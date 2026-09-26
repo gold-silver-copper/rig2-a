@@ -1,0 +1,13 @@
+{
+  "bad_key": "pass",
+  "bad_model": "pass",
+  "image_input": "pass",
+  "parallel_tools": "pass",
+  "plain_text": "pass",
+  "reasoning": "pass",
+  "streamed_arguments": "pass",
+  "streaming": "pass",
+  "structured_output": "pass",
+  "tool_call": "pass",
+  "usage": "pass"
+}

@@ -1,0 +1,141 @@
+{
+  "interactions": [
+    {
+      "request": {
+        "method": "POST",
+        "uri": "https://api.anthropic.com/v1/messages",
+        "headers": [
+          [
+            "anthropic-version",
+            "2023-06-01"
+          ],
+          [
+            "content-type",
+            "application/json"
+          ]
+        ],
+        "body": {
+          "json": {
+            "max_tokens": 512,
+            "messages": [
+              {
+                "content": [
+                  {
+                    "text": "What single color fills this image? One word.",
+                    "type": "text"
+                  },
+                  {
+                    "source": {
+                      "data": "iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAIAAADTED8xAAAB+0lEQVR42u3TQQkAAAjAwPUvrX8reHAJBmsK3pIAA4ABwABgADAAGAAMAAYAA4ABwABgADAAGAAMAAYAA4ABwABgADAAGAAMAAYAA4ABwABgADAAGAAMAAYAA4ABwABgADAAGAAMAAYAA4ABwABgADAAGAAMAAYAA4ABwAAYAAwABgADgAHAAGAAMAAYAAwABgADgAHAAGAAMAAYAAwABgADgAHAAGAAMAAYAAwABgADgAHAAGAAMAAYAAwABgADgAHAAGAAMAAYAAwABgADgAHAAGAAMAAYAAwABgAJMAAYAAwABgADgAHAAGAAMAAYAAwABgADgAHAAGAAMAAYAAwABgADgAHAAGAAMAAYAAwABgADgAHAAGAAMAAYAAwABgADgAHAAGAAMAAYAAwABgADgAHAAGAAMAAYAAyAASTAAGAAMAAYAAwABgADgAHAAGAAMAAYAAwABgADgAHAAGAAMAAYAAwABgADgAHAAGAAMAAYAAwABgADgAHAAGAAMAAYAAwABgADgAHAAGAAMAAYAAwABgADgAHAAGAAMAAGAAOAAcAAYAAwABgADAAGAAOAAcAAYAAwABgADAAGAAOAAcAAYAAwABgADAAGAAOAAcAAYAAwABgADAAGAAOAAcAAYAAwABgADAAGAAOAAcAAYAAwABgADADHAllMDvLkz2XNAAAAAElFTkSuQmCC",
+                      "media_type": "image/png",
+                      "type": "base64"
+                    },
+                    "type": "image"
+                  }
+                ],
+                "role": "user"
+              }
+            ],
+            "model": "claude-haiku-4-5-20251001"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": [
+          [
+            "date",
+            "Sat, 26 Sep 2026 20:43:57 GMT"
+          ],
+          [
+            "content-type",
+            "application/json"
+          ],
+          [
+            "anthropic-ratelimit-requests-limit",
+            "10000"
+          ],
+          [
+            "anthropic-ratelimit-requests-remaining",
+            "9999"
+          ],
+          [
+            "anthropic-ratelimit-requests-reset",
+            "2026-09-26T20:43:57Z"
+          ],
+          [
+            "server",
+            "cloudflare"
+          ],
+          [
+            "request-id",
+            "req_011CfShhQJCq1EDgTQ95pqHD"
+          ],
+          [
+            "strict-transport-security",
+            "max-age=31536000; includeSubDomains; preload"
+          ],
+          [
+            "anthropic-workspace-id",
+            "wrkspc_01TsiEGExwVN38A4inUU3v1u"
+          ],
+          [
+            "traceresponse",
+            "00-4a4aceeb8b7c7fb85656e4edfd24528e-3cb4333b514328d9-01"
+          ],
+          [
+            "vary",
+            "Accept-Encoding"
+          ],
+          [
+            "content-security-policy",
+            "default-src 'none'; frame-ancestors 'none'"
+          ],
+          [
+            "cf-cache-status",
+            "DYNAMIC"
+          ],
+          [
+            "x-robots-tag",
+            "none"
+          ],
+          [
+            "cf-ray",
+            "a4151a945b2e6a29-LAX"
+          ]
+        ],
+        "body": {
+          "json": {
+            "container": null,
+            "content": [
+              {
+                "text": "Red",
+                "type": "text"
+              }
+            ],
+            "diagnostics": null,
+            "id": "msg_011CfShhQj11HcixNoN3oCYc",
+            "model": "claude-haiku-4-5-20251001",
+            "role": "assistant",
+            "stop_details": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "type": "message",
+            "usage": {
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 0,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 0,
+              "inference_geo": "not_available",
+              "input_tokens": 120,
+              "output_tokens": 4,
+              "service_tier": "standard"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

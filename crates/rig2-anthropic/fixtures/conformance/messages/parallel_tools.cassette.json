@@ -1,0 +1,173 @@
+{
+  "interactions": [
+    {
+      "request": {
+        "method": "POST",
+        "uri": "https://api.anthropic.com/v1/messages",
+        "headers": [
+          [
+            "anthropic-version",
+            "2023-06-01"
+          ],
+          [
+            "content-type",
+            "application/json"
+          ]
+        ],
+        "body": {
+          "json": {
+            "max_tokens": 512,
+            "messages": [
+              {
+                "content": [
+                  {
+                    "text": "Get the weather in Paris and in Tokyo. Call the tool once per city, in the same reply.",
+                    "type": "text"
+                  }
+                ],
+                "role": "user"
+              }
+            ],
+            "model": "claude-haiku-4-5-20251001",
+            "tool_choice": {
+              "type": "auto"
+            },
+            "tools": [
+              {
+                "description": "Get the current weather in a city.",
+                "input_schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "city": {
+                      "description": "The city name.",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "city"
+                  ],
+                  "type": "object"
+                },
+                "name": "get_weather"
+              }
+            ]
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": [
+          [
+            "date",
+            "Sat, 26 Sep 2026 20:43:55 GMT"
+          ],
+          [
+            "content-type",
+            "application/json"
+          ],
+          [
+            "anthropic-ratelimit-requests-limit",
+            "10000"
+          ],
+          [
+            "anthropic-ratelimit-requests-remaining",
+            "9999"
+          ],
+          [
+            "anthropic-ratelimit-requests-reset",
+            "2026-09-26T20:43:55Z"
+          ],
+          [
+            "server",
+            "cloudflare"
+          ],
+          [
+            "request-id",
+            "req_011CfShhDamvuD31qzPajruB"
+          ],
+          [
+            "strict-transport-security",
+            "max-age=31536000; includeSubDomains; preload"
+          ],
+          [
+            "anthropic-workspace-id",
+            "wrkspc_01TsiEGExwVN38A4inUU3v1u"
+          ],
+          [
+            "traceresponse",
+            "00-ea9e11e59a36bb71f295cbd076c4ca0f-4d5e0bc384aea84c-01"
+          ],
+          [
+            "vary",
+            "Accept-Encoding"
+          ],
+          [
+            "content-security-policy",
+            "default-src 'none'; frame-ancestors 'none'"
+          ],
+          [
+            "cf-cache-status",
+            "DYNAMIC"
+          ],
+          [
+            "x-robots-tag",
+            "none"
+          ],
+          [
+            "cf-ray",
+            "a4151a849c296a29-LAX"
+          ]
+        ],
+        "body": {
+          "json": {
+            "container": null,
+            "content": [
+              {
+                "caller": {
+                  "type": "direct"
+                },
+                "id": "toolu_01Gpubxwbr7W2Vasp9LokXwY",
+                "input": {
+                  "city": "Paris"
+                },
+                "name": "get_weather",
+                "type": "tool_use"
+              },
+              {
+                "caller": {
+                  "type": "direct"
+                },
+                "id": "toolu_01GpZqEibZQ2qfx6vLNhvVEv",
+                "input": {
+                  "city": "Tokyo"
+                },
+                "name": "get_weather",
+                "type": "tool_use"
+              }
+            ],
+            "diagnostics": null,
+            "id": "msg_011CfShhE53yEcSDkMRGMjXQ",
+            "model": "claude-haiku-4-5-20251001",
+            "role": "assistant",
+            "stop_details": null,
+            "stop_reason": "tool_use",
+            "stop_sequence": null,
+            "type": "message",
+            "usage": {
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 0,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 0,
+              "inference_geo": "not_available",
+              "input_tokens": 594,
+              "output_tokens": 90,
+              "service_tier": "standard"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

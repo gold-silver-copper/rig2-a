@@ -1,0 +1,133 @@
+{
+  "interactions": [
+    {
+      "request": {
+        "method": "POST",
+        "uri": "https://api.anthropic.com/v1/messages",
+        "headers": [
+          [
+            "anthropic-version",
+            "2023-06-01"
+          ],
+          [
+            "content-type",
+            "application/json"
+          ]
+        ],
+        "body": {
+          "json": {
+            "max_tokens": 512,
+            "messages": [
+              {
+                "content": [
+                  {
+                    "text": "Say hi.",
+                    "type": "text"
+                  }
+                ],
+                "role": "user"
+              }
+            ],
+            "model": "claude-haiku-4-5-20251001"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": [
+          [
+            "date",
+            "Sat, 26 Sep 2026 20:44:02 GMT"
+          ],
+          [
+            "content-type",
+            "application/json"
+          ],
+          [
+            "anthropic-ratelimit-requests-limit",
+            "10000"
+          ],
+          [
+            "anthropic-ratelimit-requests-remaining",
+            "9999"
+          ],
+          [
+            "anthropic-ratelimit-requests-reset",
+            "2026-09-26T20:44:01Z"
+          ],
+          [
+            "server",
+            "cloudflare"
+          ],
+          [
+            "request-id",
+            "req_011CfShhhP7dzP8Up7NYVopR"
+          ],
+          [
+            "strict-transport-security",
+            "max-age=31536000; includeSubDomains; preload"
+          ],
+          [
+            "anthropic-workspace-id",
+            "wrkspc_01TsiEGExwVN38A4inUU3v1u"
+          ],
+          [
+            "traceresponse",
+            "00-6f47a71538813fd1847dcaadff997faa-eaf7e20a11897da9-01"
+          ],
+          [
+            "vary",
+            "Accept-Encoding"
+          ],
+          [
+            "content-security-policy",
+            "default-src 'none'; frame-ancestors 'none'"
+          ],
+          [
+            "cf-cache-status",
+            "DYNAMIC"
+          ],
+          [
+            "x-robots-tag",
+            "none"
+          ],
+          [
+            "cf-ray",
+            "a4151aad4d396a29-LAX"
+          ]
+        ],
+        "body": {
+          "json": {
+            "container": null,
+            "content": [
+              {
+                "text": "Hi! 👋 How can I help you today?",
+                "type": "text"
+              }
+            ],
+            "diagnostics": null,
+            "id": "msg_011CfShhhquEaiSyNonHpJ7Q",
+            "model": "claude-haiku-4-5-20251001",
+            "role": "assistant",
+            "stop_details": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "type": "message",
+            "usage": {
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 0,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 0,
+              "inference_geo": "not_available",
+              "input_tokens": 10,
+              "output_tokens": 16,
+              "service_tier": "standard"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

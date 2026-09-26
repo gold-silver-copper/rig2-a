@@ -1,0 +1,104 @@
+{
+  "interactions": [
+    {
+      "request": {
+        "method": "POST",
+        "uri": "https://api.anthropic.com/v1/messages",
+        "headers": [
+          [
+            "anthropic-version",
+            "2023-06-01"
+          ],
+          [
+            "content-type",
+            "application/json"
+          ]
+        ],
+        "body": {
+          "json": {
+            "max_tokens": 512,
+            "messages": [
+              {
+                "content": [
+                  {
+                    "text": "hi",
+                    "type": "text"
+                  }
+                ],
+                "role": "user"
+              }
+            ],
+            "model": "rig2-no-such-model"
+          }
+        }
+      },
+      "response": {
+        "status": 404,
+        "headers": [
+          [
+            "date",
+            "Sat, 26 Sep 2026 20:44:02 GMT"
+          ],
+          [
+            "content-type",
+            "application/json"
+          ],
+          [
+            "x-should-retry",
+            "false"
+          ],
+          [
+            "request-id",
+            "req_011CfShhkSucSLVUk1akm8e6"
+          ],
+          [
+            "strict-transport-security",
+            "max-age=31536000; includeSubDomains; preload"
+          ],
+          [
+            "anthropic-workspace-id",
+            "wrkspc_01TsiEGExwVN38A4inUU3v1u"
+          ],
+          [
+            "traceresponse",
+            "00-7d1832f5ae185523d338cca772ed1edd-785969fa006fbb40-01"
+          ],
+          [
+            "server",
+            "cloudflare"
+          ],
+          [
+            "vary",
+            "Accept-Encoding"
+          ],
+          [
+            "content-security-policy",
+            "default-src 'none'; frame-ancestors 'none'"
+          ],
+          [
+            "cf-cache-status",
+            "DYNAMIC"
+          ],
+          [
+            "x-robots-tag",
+            "none"
+          ],
+          [
+            "cf-ray",
+            "a4151ab1c9f16a29-LAX"
+          ]
+        ],
+        "body": {
+          "json": {
+            "error": {
+              "message": "model: rig2-no-such-model",
+              "type": "not_found_error"
+            },
+            "request_id": "req_011CfShhkSucSLVUk1akm8e6",
+            "type": "error"
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,145 @@
+{
+  "interactions": [
+    {
+      "request": {
+        "method": "POST",
+        "uri": "https://api.anthropic.com/v1/messages",
+        "headers": [
+          [
+            "anthropic-version",
+            "2023-06-01"
+          ],
+          [
+            "content-type",
+            "application/json"
+          ]
+        ],
+        "body": {
+          "json": {
+            "max_tokens": 4096,
+            "messages": [
+              {
+                "content": [
+                  {
+                    "text": "Is 391 a prime number? Think it through, then answer yes or no.",
+                    "type": "text"
+                  }
+                ],
+                "role": "user"
+              }
+            ],
+            "model": "claude-haiku-4-5-20251001",
+            "thinking": {
+              "budget_tokens": 2048,
+              "type": "enabled"
+            }
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": [
+          [
+            "date",
+            "Sat, 26 Sep 2026 20:44:01 GMT"
+          ],
+          [
+            "content-type",
+            "application/json"
+          ],
+          [
+            "anthropic-ratelimit-requests-limit",
+            "10000"
+          ],
+          [
+            "anthropic-ratelimit-requests-remaining",
+            "9999"
+          ],
+          [
+            "anthropic-ratelimit-requests-reset",
+            "2026-09-26T20:43:58Z"
+          ],
+          [
+            "server",
+            "cloudflare"
+          ],
+          [
+            "request-id",
+            "req_011CfShhSVQzmMT6p61PaKq7"
+          ],
+          [
+            "strict-transport-security",
+            "max-age=31536000; includeSubDomains; preload"
+          ],
+          [
+            "anthropic-workspace-id",
+            "wrkspc_01TsiEGExwVN38A4inUU3v1u"
+          ],
+          [
+            "traceresponse",
+            "00-dab92cb860ab54def65baecd0caeb133-0e32ab2afe1208e5-01"
+          ],
+          [
+            "vary",
+            "Accept-Encoding"
+          ],
+          [
+            "content-security-policy",
+            "default-src 'none'; frame-ancestors 'none'"
+          ],
+          [
+            "cf-cache-status",
+            "DYNAMIC"
+          ],
+          [
+            "x-robots-tag",
+            "none"
+          ],
+          [
+            "cf-ray",
+            "a4151a977e526a29-LAX"
+          ]
+        ],
+        "body": {
+          "json": {
+            "container": null,
+            "content": [
+              {
+                "signature": "EtkHCpoBCBIYAipA5qwQVD9h52fFASiBaFTBam++RpPhLi8i/CopQz1afLNilCFe7ZwTHsO9l639sccGeeMmILJxit6uPIc5X3G5rzIZY2xhdWRlLWhhaWt1LTQtNS0yMDI1MTAwMTgAQgh0aGlua2luZ1okNzI4ZGNhYTktOGFmNi00M2EyLTkzOTctMjVkYTM3YjljMzlkqAGQ3eDVBhIM3GFc/B1UUu2GhIcwGgxnyJT/IGVnDlkALUEiMGAAsVBzz+bQQ5p9MS27u+zIwZIZfgLPOg0IfAHR656LGV/aGEa/NuEjhlf8AFUSoCrrBXWp688FJ6DIg+hySrnn1/5YONr63Uw0ud5CneqcebSgDUwoHm2EH1Cb2cCuUINjB5B9oQ2njiaUz0ImlH63cSRX7zs3n9LYh0+yE/+kQ+bRIlpxfuh/Zgx2fOnA4l5S+pptgCu/YUEEhGlJkOoXxZOdjJySINbF9nAaSsXyqieUZzNoZVXVjqkJX2MZ7hZpPrUTDO57I1IluqN7qrhqA2nTLU0yBYp23ShbuadRONFFWR+F1Zi3ccyxVTzOGB9nrfu561k0bW7iiViW9HpAggGecnTWnwxL0iw7Bk+KvPm+iuo+iHI4ndRdbBuwsbjFjLMYhKHtcVJ3Y7+j7PY1nwuFz77/kTfWz7m5nDPQ87Pal/Gwby016BqYsL2/KidJH9aCHMkvDjb5YPaqDGNuz+7+XWn11m4mRQa9ftnbZyBuSBaPkopDN+a9P/VGgkfO479TJe+HHsST+L7M8uGlPLeZBg5cdku+LF9NvANyQ4DuOAgSBI81kqWgkec5+QCECj/r1jfFhmjqFEXKEq++RPKbx84rEwy3r37ZfuO6sVdL2MajTrMO8HnWPXupXXlTNBs44pt6FecXZX/8hwV+UnbEiqyamU8AufteTj4op9phQdm3zE+mnS81gzr1FjbLPJw2i+SYv6np72CBMik5SukdcC28ozB+qEu/yTjNpVqCRLf305AJ1c7VBAirps5z1Dv0zOulyMqJ6cXgo8fZnnLKa5CYZDMQL04V1ZuGav8jPVnev4aVR0Gw9HUYWMw4TSsRh5pjvFlwixJK50Ky3WN04htDP4n2wdnkKpai9cnyaVFPEz4uHLIqzmUll4EILxWyQVw6QDB3XBPG1IkrySCiyGbJfwPxymy1UNQgft+tVHkGcpg77//0cP6mNAWNVeOfnXIYPUstlfbeRSPxqkiAb87ZkX0Rs/ng2t7A/zz4IRlnc0y+tsDaSSIw72sIiI/sua3h0nbqlg+ymAWJ0ri4ZFWg74Om5Uhz+RgB",
+                "thinking": "To determine if 391 is a prime number, I need to check if it has any divisors other than 1 and itself.\n\nLet me check divisibility by small primes:\n\n- Is it divisible by 2? No, 391 is odd.\n- Is it divisible by 3? Let me check: 3 + 9 + 1 = 13. 13 is not divisible by 3, so 391 isn't either.\n- Is it divisible by 5? No, it doesn't end in 0 or 5.\n- Is it divisible by 7? 391 ÷ 7 = 55.857... No.\n- Is it divisible by 11? Let me check: alternating sum = 3 - 9 + 1 = -5. Not divisible by 11.\n- Is it divisible by 13? 391 ÷ 13 = 30.076... No.\n- Is it divisible by 17? 391 ÷ 17 = 23. Let me verify: 17 × 23 = 391. Yes!\n\nSo 391 = 17 × 23\n\nSince 391 has factors other than 1 and itself (specifically 17 and 23), it is not a prime number.",
+                "type": "thinking"
+              },
+              {
+                "text": "# Checking if 391 is prime\n\nI need to test if 391 is divisible by prime numbers up to √391 ≈ 19.8\n\nTesting small primes:\n- Not divisible by 2 (it's odd)\n- Not divisible by 3 (digit sum: 3+9+1=13)\n- Not divisible by 5 (doesn't end in 0 or 5)\n- Not divisible by 7, 11, or 13...\n- **Divisible by 17**: 391 ÷ 17 = 23 ✓\n\nSince 391 = 17 × 23, it has factors other than 1 and itself.\n\n**No**, 391 is not a prime number.",
+                "type": "text"
+              }
+            ],
+            "diagnostics": null,
+            "id": "msg_011CfShhSzC1AHuKw37CypQV",
+            "model": "claude-haiku-4-5-20251001",
+            "role": "assistant",
+            "stop_details": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "type": "message",
+            "usage": {
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 0,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 0,
+              "inference_geo": "not_available",
+              "input_tokens": 54,
+              "output_tokens": 500,
+              "output_tokens_details": {
+                "thinking_tokens": 314
+              },
+              "service_tier": "standard"
+            }
+          }
+        }
+      }
+    }
+  ]
+}
