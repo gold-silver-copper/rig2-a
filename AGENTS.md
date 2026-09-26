@@ -29,6 +29,9 @@ Rules for anyone, human or agent, changing this repository.
 - `unsafe` is denied workspace-wide. A crate that needs it (FFI) allows it on
   the one item, with a `// SAFETY:` comment.
 - Every crate sets `publish = false`. Nothing is published.
+- Dependencies are the latest stable release. Manifests state the full
+  latest version (`"1.12.1"`, not `"1"`), and a new dependency is checked on
+  crates.io before it is added.
 - Never commit secrets. Recordings and cassettes are scrubbed as they are
   written, and `cargo xtask scan` checks every fixture. Run it before pushing.
 
