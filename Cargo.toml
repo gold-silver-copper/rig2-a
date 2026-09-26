@@ -25,6 +25,11 @@ thiserror = "2.0"
 tracing = "0.1"
 web-time = "1.1"
 
+proc-macro2 = "1.0"
+proc-macro-crate = "3.3"
+quote = "1.0"
+syn = { version = "2.0", features = ["full"] }
+
 proptest = "1.7"
 tokio = { version = "1.47", features = ["macros", "rt-multi-thread", "time"] }
 
@@ -58,3 +63,4 @@ cast_possible_wrap = "allow"
 items_after_statements = "allow"
 struct_field_names = "allow"
 doc_markdown = "allow"
+single_match_else = "allow"

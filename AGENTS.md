@@ -37,7 +37,7 @@ Rules for anyone, human or agent, changing this repository.
 `clippy::pedantic` is on, with these exceptions, allowed in the workspace
 manifest: `module_name_repetitions`, `must_use_candidate`,
 `missing_errors_doc`, `missing_panics_doc`, `return_self_not_must_use`,
-`similar_names`, `too_many_lines`, `doc_markdown`, the four numeric `cast_*` lints,
+`similar_names`, `too_many_lines`, `doc_markdown`, `single_match_else`, the four numeric `cast_*` lints,
 `items_after_statements` and `struct_field_names`. Errors are documented in
 prose where they are not obvious.
 

@@ -1,0 +1,26 @@
+[package]
+name = "rig2-agent"
+description = "Agents for rig2: a sans-IO agent state machine, its driver, tools, memory and retrieval."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+publish.workspace = true
+
+[dependencies]
+futures.workspace = true
+rig2-core = { path = "../rig2-core" }
+rig2-macros = { path = "../rig2-macros" }
+schemars.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+tracing.workspace = true
+
+[dev-dependencies]
+rig2-testkit = { path = "../rig2-testkit" }
+futures = { workspace = true, features = ["executor"] }
+tokio.workspace = true
+
+[lints]
+workspace = true

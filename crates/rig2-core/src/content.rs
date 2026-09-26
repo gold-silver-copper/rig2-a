@@ -75,6 +75,20 @@ impl Message {
     }
 }
 
+/// A user turn with one text part.
+impl From<&str> for Message {
+    fn from(text: &str) -> Self {
+        Self::user(text)
+    }
+}
+
+/// A user turn with one text part.
+impl From<String> for Message {
+    fn from(text: String) -> Self {
+        Self::user(text)
+    }
+}
+
 pub(crate) fn join_text<'a>(parts: impl Iterator<Item = &'a str>) -> String {
     parts.collect::<Vec<_>>().join("")
 }

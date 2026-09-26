@@ -56,4 +56,4 @@ jobs:
         with:
           targets: wasm32-unknown-unknown
       - uses: Swatinem/rust-cache@v2
-      - run: cargo check --target wasm32-unknown-unknown -p rig2-core
+      - run: cargo check --target wasm32-unknown-unknown -p rig2-core -p rig2-agent

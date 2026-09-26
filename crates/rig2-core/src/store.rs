@@ -467,10 +467,28 @@ impl VectorStore for InMemoryStore {
     }
 }
 
+pub use rig2_macros::Embed;
+
 /// A type whose chosen fields are embedded for search.
 ///
-/// Derive it with `#[derive(Embed)]` from `rig2-macros`, marking the fields
-/// to embed with `#[embed]`.
+/// Derive it with `#[derive(Embed)]`, marking the fields to embed with
+/// `#[embed]`.
+///
+/// ```
+/// use rig2_core::store::Embed;
+///
+/// #[derive(Embed)]
+/// struct Article {
+///     #[embed]
+///     title: String,
+///     #[embed]
+///     body: String,
+///     year: u32,
+/// }
+///
+/// let a = Article { title: "Rust".into(), body: "Ownership.".into(), year: 2015 };
+/// assert_eq!(a.embed_text(), "Rust\nOwnership.");
+/// ```
 pub trait Embed {
     /// The text to embed.
     fn embed_text(&self) -> String;

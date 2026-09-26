@@ -1,0 +1,24 @@
+[package]
+name = "rig2-testkit"
+description = "Test support for rig2: scripted models, HTTP cassettes, secret scrubbing and the provider conformance suite."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+publish.workspace = true
+
+[dependencies]
+bytes.workspace = true
+futures.workspace = true
+http.workspace = true
+rig2-core = { path = "../rig2-core" }
+serde.workspace = true
+serde_json.workspace = true
+
+[dev-dependencies]
+futures = { workspace = true, features = ["executor"] }
+tokio.workspace = true
+
+[lints]
+workspace = true

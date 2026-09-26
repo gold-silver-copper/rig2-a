@@ -42,6 +42,8 @@ pub enum ErrorKind {
     Config,
     /// The operation was cancelled.
     Cancelled,
+    /// A limit was reached: turns, tokens or cost.
+    Limit,
     /// Anything else.
     Other,
 }
