@@ -1,0 +1,104 @@
+{
+  "interactions": [
+    {
+      "request": {
+        "method": "POST",
+        "uri": "https://api.openai.com/v1/chat/completions",
+        "headers": [
+          [
+            "content-type",
+            "application/json"
+          ]
+        ],
+        "body": {
+          "json": {
+            "max_completion_tokens": 512,
+            "messages": [
+              {
+                "content": [
+                  {
+                    "text": "hi",
+                    "type": "text"
+                  }
+                ],
+                "role": "user"
+              }
+            ],
+            "model": "gpt-4.1-nano"
+          }
+        }
+      },
+      "response": {
+        "status": 401,
+        "headers": [
+          [
+            "date",
+            "Sat, 26 Sep 2026 20:39:12 GMT"
+          ],
+          [
+            "content-type",
+            "application/json; charset=utf-8"
+          ],
+          [
+            "content-length",
+            "279"
+          ],
+          [
+            "cf-ray",
+            "a415139d9cf224e5-LAX"
+          ],
+          [
+            "cf-cache-status",
+            "DYNAMIC"
+          ],
+          [
+            "server",
+            "cloudflare"
+          ],
+          [
+            "strict-transport-security",
+            "max-age=31536000; includeSubDomains; preload"
+          ],
+          [
+            "vary",
+            "Origin"
+          ],
+          [
+            "access-control-expose-headers",
+            "CF-Ray"
+          ],
+          [
+            "access-control-expose-headers",
+            "CF-Ray"
+          ],
+          [
+            "x-content-type-options",
+            "nosniff"
+          ],
+          [
+            "x-openai-proxy-wasm",
+            "v0.1"
+          ],
+          [
+            "x-request-id",
+            "req_c8f4107c09294275ab7f6f0bc75fdac3"
+          ],
+          [
+            "alt-svc",
+            "h3=\":443\"; ma=86400"
+          ]
+        ],
+        "body": {
+          "json": {
+            "error": {
+              "code": "invalid_api_key",
+              "message": "Incorrect API key provided: rig2-inv*****************0000. You can find your API key at https://platform.openai.com/account/api-keys.",
+              "param": null,
+              "type": "invalid_request_error"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

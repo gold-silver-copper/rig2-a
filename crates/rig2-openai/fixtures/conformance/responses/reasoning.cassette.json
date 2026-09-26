@@ -1,0 +1,220 @@
+{
+  "interactions": [
+    {
+      "request": {
+        "method": "POST",
+        "uri": "https://api.openai.com/v1/responses",
+        "headers": [
+          [
+            "content-type",
+            "application/json"
+          ]
+        ],
+        "body": {
+          "json": {
+            "include": [
+              "reasoning.encrypted_content"
+            ],
+            "input": [
+              {
+                "content": [
+                  {
+                    "text": "Is 391 a prime number? Think it through, then answer yes or no.",
+                    "type": "input_text"
+                  }
+                ],
+                "role": "user"
+              }
+            ],
+            "max_output_tokens": 4096,
+            "model": "gpt-5-nano",
+            "reasoning": {
+              "effort": "low"
+            },
+            "store": false
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": [
+          [
+            "date",
+            "Sat, 26 Sep 2026 20:39:17 GMT"
+          ],
+          [
+            "content-type",
+            "application/json"
+          ],
+          [
+            "content-length",
+            "3983"
+          ],
+          [
+            "cf-ray",
+            "a41513b26af424e5-LAX"
+          ],
+          [
+            "cf-cache-status",
+            "DYNAMIC"
+          ],
+          [
+            "server",
+            "cloudflare"
+          ],
+          [
+            "strict-transport-security",
+            "max-age=31536000; includeSubDomains; preload"
+          ],
+          [
+            "x-content-type-options",
+            "nosniff"
+          ],
+          [
+            "access-control-expose-headers",
+            "X-Request-ID"
+          ],
+          [
+            "access-control-expose-headers",
+            "CF-Ray"
+          ],
+          [
+            "access-control-expose-headers",
+            "CF-Ray"
+          ],
+          [
+            "openai-processing-ms",
+            "1379"
+          ],
+          [
+            "openai-version",
+            "2020-10-01"
+          ],
+          [
+            "x-ratelimit-limit-requests",
+            "10000"
+          ],
+          [
+            "x-ratelimit-remaining-requests",
+            "9999"
+          ],
+          [
+            "x-ratelimit-reset-requests",
+            "6ms"
+          ],
+          [
+            "x-request-id",
+            "req_40506d52bab74c308499256306efbe85"
+          ],
+          [
+            "alt-svc",
+            "h3=\":443\"; ma=86400"
+          ]
+        ],
+        "body": {
+          "json": {
+            "access_programs": null,
+            "background": false,
+            "billing": {
+              "payer": "developer"
+            },
+            "completed_at": 1790455157,
+            "created_at": 1790455155,
+            "error": null,
+            "frequency_penalty": 0.0,
+            "id": "resp_0f70e87464b95e71016ab82d73ae5487d08b968115db2f74c6",
+            "incomplete_details": null,
+            "instructions": null,
+            "max_output_tokens": 4096,
+            "max_tool_calls": null,
+            "metadata": {},
+            "model": "gpt-5-nano-2025-08-07",
+            "moderation": null,
+            "object": "response",
+            "output": [
+              {
+                "content": [],
+                "encrypted_content": "gAAAAABquC11AQSUot94ByCEik0BeMa6T3Qulvk5kF3bzc-c76VBCVvYuiwsicDbV7CRew4Xx5yKFfEjxomdktV7g3JwxEDtehIMsQl7Wxby4npfm1-5DlkftU-yVNjRsrpcxuywzbd4GZm9LZQiOmNDo8AjV8Hi9yqkqFtroN294-kuNa8hP91Dk5OAz9OMVhxz8jFcH_803v3ygFMoEg9ZMgQR4h5SYfdjHquFbjO1D2ceTHeHAc6jksbNibf-khrWNQzeHFVmGiBGxuDr-covRnlQELXJFi6wxRTOHW9QWjJqSjYJqNeJDCrRTXAo5F0OxXxoCCUcZsfVOy2Yq7VYaRV9xLRHwHMCIKWE4Qp7qyONrxks94R48iay7P0OlDyA8Ecyonjs_Ffnx5clN0UY8BO8kma63MoWxupXsvDYOfCmrjEiZhFwGPglEbC23Wc3SqNADNqmYXabqRIF-hi3ca7jkWs1Z_57H9BAaoB2sawAf_xvArvBkCO5zbUGXyP22uqY6oet-mdHFlfDEl9HRPsvtIUEFbXzBEU_HdLgJ17OVXs5V-CerbTMupAc0Yd-GMsdGEmIhr0419aB6kNzW_XZgMHZvdh8AuW4tgx2osDuFHM0I2wrMluU1LSW4ggDP7tPbKqJdVcJ7NVKJdaFnkh-DhZz9jGs5SgunVcfvCNOT3Gg7L1oO4F5tW60R3EPEFvXekIzfhOBK4Ofhwk0LFB9T7MDu02xnX0sXyH_m5v31Y46ez1I3vXWvEVIt9Vxu0wVGWAftAImj55mDrh3QbxyDT-NbYbUQNJ6PGZu4u-KrjA8qEJ1PWxsZz5G6O5B_aeH1Dz6N_dKM7QBJxesNgnXK5NeRcNq91Bbid7KiIK3c5q-XK7tnAoISVSe8RcB1XwEdPvPk9KOXfMbaJLL94IbHblLfxOb1NYS9BFoa_7VRaiPLeO2dMIONxuU0IIxUnl2PQ6yYe0z6SxyNVQ0oK_TsUs6QVrLnjAlbPfeFTVMJIq7ed_DOPY7uEzZ-Z31FF9IKw5psdQApfKCsGKOy24nXP9x3NHeZCg4YaD5gSzL5WIpCEEfzHN5u6sFu949ZF_voqYjjHrzKQZaK0ouuWmOy3hnt1xrLuzTwReFiKtuLcZPswz3jTolfNCDw7zDdq4q8_YNKWOZxiZqAqBMyAroX4YQMB3nlG-TU6SRumd5I-N1UTWQb968Z9Q1dxUNOA-O1phJeTmDxG1YjDgk0VLr82bBg8GcA5eC2syqIWVzVR0p9aX7jH2sqc8isbBTxLoutqZHYhHc24OeEBWnB_YBB4HxRvvkQlMgQXQ9w6psyrRy_vYVrRpzsY8z6GexbxLxBsT234r5RM3mSGhUUOz_23tTtbH7gLsBj3LfuR1ANArc0nds1ZiZ8Yn-dz8nSO_xVMltUzXZ6-80i94jSYLcRl8of-lH8PMnUyHEv8jAjHKxqRZmfVyKj6Zq_Uon6xH5IfWke4aF8qTsCmcYYl5MoFOgb-pzvOghXkQkhDWGwRz9-JPeHsyBvcU7j574H6gwk-2gwKW16OiMNmWnLwJHzzadbdbAjsVS-MOxGMSIK8u7zLtwAplCXipltlTrwVGb-kC3HqCkBcn_9Hk-wT331GMazaqPkZgOQRKowCJXBNLKEDLXRbH14_fFsU_VTX6SdQ1An3IUtbAKFp_ZDbwU2e774m9OiGAmazdaWhHv37Rio1VQLyrpzxpchUUKl3hLt1eYj8y6DmeHWrXnv5qapKOJ1A==",
+                "id": "rs_0f70e87464b95e71016ab82d74036087d0a48afd07ef07aa14",
+                "summary": [],
+                "type": "reasoning"
+              },
+              {
+                "content": [
+                  {
+                    "annotations": [],
+                    "logprobs": [],
+                    "text": "No.",
+                    "type": "output_text"
+                  }
+                ],
+                "id": "msg_0f70e87464b95e71016ab82d74a58c87d0a600253b835cd58f",
+                "role": "assistant",
+                "status": "completed",
+                "type": "message"
+              }
+            ],
+            "parallel_tool_calls": true,
+            "presence_penalty": 0.0,
+            "previous_response_id": null,
+            "prompt_cache_key": null,
+            "prompt_cache_retention": "in_memory",
+            "reasoning": {
+              "context": "current_turn",
+              "effort": "low",
+              "mode": "standard",
+              "summary": null
+            },
+            "safety_identifier": null,
+            "service_tier": "default",
+            "status": "completed",
+            "store": false,
+            "temperature": 1.0,
+            "text": {
+              "format": {
+                "type": "text"
+              },
+              "verbosity": "medium"
+            },
+            "tool_choice": "auto",
+            "tool_usage": {
+              "image_gen": {
+                "input_tokens": 0,
+                "input_tokens_details": {
+                  "image_tokens": 0,
+                  "text_tokens": 0
+                },
+                "output_tokens": 0,
+                "output_tokens_details": {
+                  "image_tokens": 0,
+                  "text_tokens": 0
+                },
+                "total_tokens": 0
+              },
+              "web_search": {
+                "num_requests": 0
+              }
+            },
+            "tools": [],
+            "top_logprobs": 0,
+            "top_p": 1.0,
+            "truncation": "disabled",
+            "usage": {
+              "input_tokens": 23,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 120,
+              "output_tokens_details": {
+                "reasoning_tokens": 64
+              },
+              "total_tokens": 143
+            },
+            "user": null
+          }
+        }
+      }
+    }
+  ]
+}

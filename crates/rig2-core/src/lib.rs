@@ -41,6 +41,7 @@
 
 mod base64_bytes;
 mod error;
+mod secret;
 mod send;
 mod task;
 
@@ -56,6 +57,7 @@ pub mod vision;
 pub mod wrap;
 
 pub use error::{Error, ErrorKind, Result};
+pub use secret::Secret;
 pub use send::{BoxFuture, BoxStream, MaybeSend, MaybeSync};
 pub use task::{Model, ModelInfo, StreamingModel, StreamingTask, Task};
 pub use wrap::{

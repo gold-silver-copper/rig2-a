@@ -1,0 +1,152 @@
+{
+  "interactions": [
+    {
+      "request": {
+        "method": "POST",
+        "uri": "https://api.openai.com/v1/chat/completions",
+        "headers": [
+          [
+            "content-type",
+            "application/json"
+          ]
+        ],
+        "body": {
+          "json": {
+            "max_completion_tokens": 4096,
+            "messages": [
+              {
+                "content": [
+                  {
+                    "text": "Is 391 a prime number? Think it through, then answer yes or no.",
+                    "type": "text"
+                  }
+                ],
+                "role": "user"
+              }
+            ],
+            "model": "gpt-5-nano",
+            "reasoning_effort": "low"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": [
+          [
+            "date",
+            "Sat, 26 Sep 2026 20:39:11 GMT"
+          ],
+          [
+            "content-type",
+            "application/json"
+          ],
+          [
+            "content-length",
+            "814"
+          ],
+          [
+            "cf-ray",
+            "a415138f382c24e5-LAX"
+          ],
+          [
+            "cf-cache-status",
+            "DYNAMIC"
+          ],
+          [
+            "server",
+            "cloudflare"
+          ],
+          [
+            "strict-transport-security",
+            "max-age=31536000; includeSubDomains; preload"
+          ],
+          [
+            "x-content-type-options",
+            "nosniff"
+          ],
+          [
+            "access-control-expose-headers",
+            "X-Request-ID"
+          ],
+          [
+            "access-control-expose-headers",
+            "CF-Ray"
+          ],
+          [
+            "access-control-expose-headers",
+            "CF-Ray"
+          ],
+          [
+            "openai-processing-ms",
+            "1191"
+          ],
+          [
+            "openai-version",
+            "2020-10-01"
+          ],
+          [
+            "x-openai-proxy-wasm",
+            "v0.1"
+          ],
+          [
+            "x-ratelimit-limit-requests",
+            "10000"
+          ],
+          [
+            "x-ratelimit-remaining-requests",
+            "9999"
+          ],
+          [
+            "x-ratelimit-reset-requests",
+            "6ms"
+          ],
+          [
+            "x-request-id",
+            "req_b64284eeeac943b193475620d23569cf"
+          ],
+          [
+            "alt-svc",
+            "h3=\":443\"; ma=86400"
+          ]
+        ],
+        "body": {
+          "json": {
+            "choices": [
+              {
+                "finish_reason": "stop",
+                "index": 0,
+                "message": {
+                  "annotations": [],
+                  "content": "No. 391 = 17 × 23, so it is composite.",
+                  "refusal": null,
+                  "role": "assistant"
+                }
+              }
+            ],
+            "created": 1790455150,
+            "id": "chatcmpl-ESTSoAiAQXDGQxR4DDlrDfORvhCjx",
+            "model": "gpt-5-nano-2025-08-07",
+            "object": "chat.completion",
+            "service_tier": "default",
+            "system_fingerprint": null,
+            "usage": {
+              "completion_tokens": 153,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": 0,
+                "audio_tokens": 0,
+                "reasoning_tokens": 128,
+                "rejected_prediction_tokens": 0
+              },
+              "prompt_tokens": 23,
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cached_tokens": 0
+              },
+              "total_tokens": 176
+            }
+          }
+        }
+      }
+    }
+  ]
+}

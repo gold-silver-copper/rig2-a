@@ -1,0 +1,190 @@
+{
+  "interactions": [
+    {
+      "request": {
+        "method": "POST",
+        "uri": "https://api.openai.com/v1/chat/completions",
+        "headers": [
+          [
+            "content-type",
+            "application/json"
+          ]
+        ],
+        "body": {
+          "json": {
+            "max_completion_tokens": 512,
+            "messages": [
+              {
+                "content": [
+                  {
+                    "text": "What is the capital of France? Answer with the city and its country.",
+                    "type": "text"
+                  }
+                ],
+                "role": "user"
+              }
+            ],
+            "model": "gpt-4.1-nano",
+            "tool_choice": {
+              "function": {
+                "name": "submit_Capital"
+              },
+              "type": "function"
+            },
+            "tools": [
+              {
+                "function": {
+                  "description": "Submit the answer in the required structure.",
+                  "name": "submit_Capital",
+                  "parameters": {
+                    "$schema": "https://json-schema.org/draft/2020-12/schema",
+                    "properties": {
+                      "city": {
+                        "type": "string"
+                      },
+                      "country": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "city",
+                      "country"
+                    ],
+                    "title": "Capital",
+                    "type": "object"
+                  }
+                },
+                "type": "function"
+              }
+            ]
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": [
+          [
+            "date",
+            "Sat, 26 Sep 2026 20:39:09 GMT"
+          ],
+          [
+            "content-type",
+            "application/json"
+          ],
+          [
+            "cf-ray",
+            "a4151388fd0d24e5-LAX"
+          ],
+          [
+            "cf-cache-status",
+            "DYNAMIC"
+          ],
+          [
+            "server",
+            "cloudflare"
+          ],
+          [
+            "strict-transport-security",
+            "max-age=31536000; includeSubDomains; preload"
+          ],
+          [
+            "x-content-type-options",
+            "nosniff"
+          ],
+          [
+            "access-control-expose-headers",
+            "X-Request-ID"
+          ],
+          [
+            "access-control-expose-headers",
+            "CF-Ray"
+          ],
+          [
+            "access-control-expose-headers",
+            "CF-Ray"
+          ],
+          [
+            "openai-processing-ms",
+            "315"
+          ],
+          [
+            "openai-version",
+            "2020-10-01"
+          ],
+          [
+            "x-openai-proxy-wasm",
+            "v0.1"
+          ],
+          [
+            "x-ratelimit-limit-requests",
+            "10000"
+          ],
+          [
+            "x-ratelimit-remaining-requests",
+            "9999"
+          ],
+          [
+            "x-ratelimit-reset-requests",
+            "6ms"
+          ],
+          [
+            "x-request-id",
+            "req_9c816887adac4046be65f73970896059"
+          ],
+          [
+            "alt-svc",
+            "h3=\":443\"; ma=86400"
+          ]
+        ],
+        "body": {
+          "json": {
+            "choices": [
+              {
+                "finish_reason": "stop",
+                "index": 0,
+                "logprobs": null,
+                "message": {
+                  "annotations": [],
+                  "content": null,
+                  "refusal": null,
+                  "role": "assistant",
+                  "tool_calls": [
+                    {
+                      "function": {
+                        "arguments": "{\"city\":\"Paris\",\"country\":\"France\"}",
+                        "name": "submit_Capital"
+                      },
+                      "id": "call_f4NQGDz8vnZWfd49NuIinMbN",
+                      "type": "function"
+                    }
+                  ]
+                }
+              }
+            ],
+            "created": 1790455149,
+            "id": "chatcmpl-ESTSnFBDfNBLcjZ4J2u0jOCdpkVtk",
+            "model": "gpt-4.1-nano-2025-04-14",
+            "object": "chat.completion",
+            "service_tier": "default",
+            "system_fingerprint": "fp_109d5ede69",
+            "usage": {
+              "completion_tokens": 9,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": 0,
+                "audio_tokens": 0,
+                "reasoning_tokens": 0,
+                "rejected_prediction_tokens": 0
+              },
+              "prompt_tokens": 78,
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cached_tokens": 0
+              },
+              "total_tokens": 87
+            }
+          }
+        }
+      }
+    }
+  ]
+}

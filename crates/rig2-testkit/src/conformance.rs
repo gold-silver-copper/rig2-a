@@ -23,7 +23,7 @@ use serde::Deserialize;
 
 use crate::cassette::{Cassette, live};
 
-/// A 64x64 solid red PNG.
+/// A 256x256 solid red PNG.
 pub const RED_PNG: &[u8] = include_bytes!("red.png");
 
 /// A completion case.
@@ -419,6 +419,24 @@ pub async fn run(suite: &Suite) -> Vec<(Case, Outcome)> {
             continue;
         }
         results.push((case_id, outcome));
+    }
+    if live() {
+        let table: serde_json::Map<String, serde_json::Value> = results
+            .iter()
+            .map(|(case, outcome)| {
+                (
+                    case.slug().to_owned(),
+                    serde_json::Value::String(outcome.cell().to_owned()),
+                )
+            })
+            .collect();
+        let json = serde_json::to_string_pretty(&table).unwrap_or_default();
+        if let Err(error) = std::fs::write(suite.fixtures.join("results.json"), json + "\n") {
+            results.push((
+                Case::PlainText,
+                Outcome::Fail(format!("could not save the results: {error}")),
+            ));
+        }
     }
     results
 }

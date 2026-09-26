@@ -1,0 +1,112 @@
+{
+  "interactions": [
+    {
+      "request": {
+        "method": "POST",
+        "uri": "https://api.openai.com/v1/responses",
+        "headers": [
+          [
+            "content-type",
+            "application/json"
+          ]
+        ],
+        "body": {
+          "json": {
+            "include": [
+              "reasoning.encrypted_content"
+            ],
+            "input": [
+              {
+                "content": [
+                  {
+                    "text": "hi",
+                    "type": "input_text"
+                  }
+                ],
+                "role": "user"
+              }
+            ],
+            "max_output_tokens": 512,
+            "model": "rig2-no-such-model",
+            "store": false
+          }
+        }
+      },
+      "response": {
+        "status": 404,
+        "headers": [
+          [
+            "date",
+            "Sat, 26 Sep 2026 20:39:18 GMT"
+          ],
+          [
+            "content-type",
+            "application/json"
+          ],
+          [
+            "content-length",
+            "203"
+          ],
+          [
+            "cf-ray",
+            "a41513c3ab3224e5-LAX"
+          ],
+          [
+            "cf-cache-status",
+            "DYNAMIC"
+          ],
+          [
+            "server",
+            "cloudflare"
+          ],
+          [
+            "strict-transport-security",
+            "max-age=31536000; includeSubDomains; preload"
+          ],
+          [
+            "x-content-type-options",
+            "nosniff"
+          ],
+          [
+            "access-control-expose-headers",
+            "X-Request-ID"
+          ],
+          [
+            "access-control-expose-headers",
+            "CF-Ray"
+          ],
+          [
+            "access-control-expose-headers",
+            "CF-Ray"
+          ],
+          [
+            "openai-processing-ms",
+            "102"
+          ],
+          [
+            "openai-version",
+            "2020-10-01"
+          ],
+          [
+            "x-request-id",
+            "req_b4b841eaff9f4903992d601cbd75313d"
+          ],
+          [
+            "alt-svc",
+            "h3=\":443\"; ma=86400"
+          ]
+        ],
+        "body": {
+          "json": {
+            "error": {
+              "code": "model_not_found",
+              "message": "The model `rig2-no-such-model` does not exist or you do not have access to it.",
+              "param": null,
+              "type": "invalid_request_error"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

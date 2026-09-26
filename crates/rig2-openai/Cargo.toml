@@ -1,0 +1,29 @@
+[package]
+name = "rig2-openai"
+description = "OpenAI for rig2: Responses, Chat Completions, embeddings, images, audio, moderation, and OpenAI-compatible providers."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+publish.workspace = true
+
+[features]
+default = ["reqwest"]
+reqwest = ["dep:rig2-reqwest"]
+
+[dependencies]
+bytes.workspace = true
+futures.workspace = true
+http.workspace = true
+rig2-core = { path = "../rig2-core" }
+rig2-reqwest = { path = "../rig2-reqwest", optional = true }
+serde.workspace = true
+serde_json.workspace = true
+
+[dev-dependencies]
+rig2-testkit = { path = "../rig2-testkit" }
+tokio.workspace = true
+
+[lints]
+workspace = true

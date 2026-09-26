@@ -28,7 +28,6 @@ use std::sync::Arc;
 
 use bytes::{Bytes, BytesMut};
 use futures::StreamExt;
-use serde::de::DeserializeOwned;
 
 pub use multipart::Multipart;
 pub use sse::{SseEvent, SseParser, sse};
@@ -58,6 +57,12 @@ pub trait HttpClient: MaybeSend + MaybeSync {
 impl<C: HttpClient + ?Sized> HttpClient for Arc<C> {
     fn send(&self, request: http::Request<Body>) -> BoxFuture<'static, Result<Response>> {
         (**self).send(request)
+    }
+}
+
+impl std::fmt::Debug for dyn HttpClient {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str("HttpClient")
     }
 }
 
@@ -110,19 +115,30 @@ pub async fn send(
     .with_provider(provider))
 }
 
-/// Read a whole response body as JSON, keeping the parsed document.
-pub async fn read_json<T: DeserializeOwned>(
-    response: Response,
-    provider: &str,
-) -> Result<(T, serde_json::Value)> {
+/// Read a whole response body as a JSON document.
+///
+/// Fails with [`ErrorKind::Decode`] when the body is not JSON.
+pub async fn read_json(response: Response, provider: &str) -> Result<serde_json::Value> {
     let body = read_body(response.into_body()).await?;
-    let raw: serde_json::Value = serde_json::from_slice(&body).map_err(|e| {
+    serde_json::from_slice(&body).map_err(|e| {
         Error::new(ErrorKind::Decode, format!("response is not JSON: {e}")).with_provider(provider)
-    })?;
-    let parsed = serde_json::from_value(raw.clone()).map_err(|e| {
-        Error::new(ErrorKind::Decode, format!("unexpected response: {e}")).with_provider(provider)
-    })?;
-    Ok((parsed, raw))
+    })
+}
+
+/// Set `key` on a JSON object; does nothing when `object` is not one.
+///
+/// Request bodies are built as JSON values; this is the non-panicking way to
+/// add a field.
+pub fn set(object: &mut serde_json::Value, key: &str, value: impl Into<serde_json::Value>) {
+    if let Some(map) = object.as_object_mut() {
+        map.insert(key.to_owned(), value.into());
+    }
+}
+
+/// Encode bytes as standard base64.
+pub fn base64(bytes: &[u8]) -> String {
+    use base64::Engine;
+    base64::engine::general_purpose::STANDARD.encode(bytes)
 }
 
 /// Build a JSON `POST` request with `headers`.
@@ -157,6 +173,25 @@ pub fn invalid_request(error: http::Error) -> Error {
         format!("could not build the request: {error}"),
     )
     .with_source(error)
+}
+
+/// A `data:` URL holding `bytes` as base64.
+pub fn data_url(media_type: &str, bytes: &[u8]) -> String {
+    format!("data:{media_type};base64,{}", base64(bytes))
+}
+
+/// Split a `data:` URL into its media type and bytes.
+///
+/// Fails with [`ErrorKind::Decode`] when it is not a base64 `data:` URL.
+pub fn parse_data_url(url: &str) -> Result<(String, Bytes)> {
+    use base64::Engine;
+    let bad = || Error::new(ErrorKind::Decode, "not a base64 data URL");
+    let rest = url.strip_prefix("data:").ok_or_else(bad)?;
+    let (media_type, data) = rest.split_once(";base64,").ok_or_else(bad)?;
+    let bytes = base64::engine::general_purpose::STANDARD
+        .decode(data)
+        .map_err(|e| bad().with_source(e))?;
+    Ok((media_type.to_owned(), Bytes::from(bytes)))
 }
 
 /// Split a byte stream into newline-delimited JSON values.

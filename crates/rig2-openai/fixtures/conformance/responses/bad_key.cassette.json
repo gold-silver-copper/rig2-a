@@ -1,0 +1,116 @@
+{
+  "interactions": [
+    {
+      "request": {
+        "method": "POST",
+        "uri": "https://api.openai.com/v1/responses",
+        "headers": [
+          [
+            "content-type",
+            "application/json"
+          ]
+        ],
+        "body": {
+          "json": {
+            "include": [
+              "reasoning.encrypted_content"
+            ],
+            "input": [
+              {
+                "content": [
+                  {
+                    "text": "hi",
+                    "type": "input_text"
+                  }
+                ],
+                "role": "user"
+              }
+            ],
+            "max_output_tokens": 512,
+            "model": "gpt-4.1-nano",
+            "store": false
+          }
+        }
+      },
+      "response": {
+        "status": 401,
+        "headers": [
+          [
+            "date",
+            "Sat, 26 Sep 2026 20:39:18 GMT"
+          ],
+          [
+            "content-type",
+            "application/json"
+          ],
+          [
+            "content-length",
+            "258"
+          ],
+          [
+            "cf-ray",
+            "a41513c1cfec24e5-LAX"
+          ],
+          [
+            "cf-cache-status",
+            "DYNAMIC"
+          ],
+          [
+            "server",
+            "cloudflare"
+          ],
+          [
+            "strict-transport-security",
+            "max-age=31536000; includeSubDomains; preload"
+          ],
+          [
+            "www-authenticate",
+            "Bearer realm=\"OpenAI API\""
+          ],
+          [
+            "x-content-type-options",
+            "nosniff"
+          ],
+          [
+            "access-control-expose-headers",
+            "X-Request-ID"
+          ],
+          [
+            "access-control-expose-headers",
+            "CF-Ray"
+          ],
+          [
+            "access-control-expose-headers",
+            "CF-Ray"
+          ],
+          [
+            "openai-processing-ms",
+            "24"
+          ],
+          [
+            "openai-version",
+            "2020-10-01"
+          ],
+          [
+            "x-request-id",
+            "req_be8b482c12e24b5f8c9b5e725292f071"
+          ],
+          [
+            "alt-svc",
+            "h3=\":443\"; ma=86400"
+          ]
+        ],
+        "body": {
+          "json": {
+            "error": {
+              "code": "invalid_api_key",
+              "message": "Incorrect API key provided: rig2-inv*****************0000. You can find your API key at https://platform.openai.com/account/api-keys.",
+              "param": null,
+              "type": "invalid_request_error"
+            }
+          }
+        }
+      }
+    }
+  ]
+}
