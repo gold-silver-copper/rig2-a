@@ -126,8 +126,9 @@ impl ScriptedModel {
                         .char_indices()
                         .nth(text.text.chars().count() / 2)
                         .map_or(0, |(i, _)| i);
-                    out.push(&block, &text.text[..mid]);
-                    out.push(&block, &text.text[mid..]);
+                    let (head, tail) = text.text.split_at_checked(mid).unwrap_or((&text.text, ""));
+                    out.push(&block, head);
+                    out.push(&block, tail);
                     out.end_text(block);
                 }
                 AssistantContent::ToolCall(call) => {

@@ -340,7 +340,7 @@ impl AgentRun {
 
 /// A rough token count: four characters a token.
 fn estimate_text(text: &str) -> u32 {
-    (text.len() / 4 + 1) as u32
+    u32::try_from(text.len() / 4 + 1).unwrap_or(u32::MAX)
 }
 
 fn estimate_json(value: &impl Serialize) -> u32 {
@@ -364,14 +364,15 @@ fn trim(messages: &[Message], budget: u32) -> Vec<Message> {
         })
         .map(|(i, _)| i)
         .collect();
-    let cost_from = |start: usize| messages[start..].iter().map(estimate_json).sum::<u32>();
+    let tail = |start: usize| messages.get(start..).unwrap_or_default();
+    let cost_from = |start: usize| tail(start).iter().map(estimate_json).sum::<u32>();
     let start = starts
         .iter()
         .copied()
         .find(|&s| cost_from(s) <= budget)
         .or_else(|| starts.last().copied())
         .unwrap_or(0);
-    messages[start..].to_vec()
+    tail(start).to_vec()
 }
 
 #[cfg(test)]

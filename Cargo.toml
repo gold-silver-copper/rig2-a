@@ -34,22 +34,75 @@ syn = { version = "3.0.6", features = ["full"] }
 proptest = "1.11.0"
 tokio = { version = "1.53.1", features = ["macros", "rt-multi-thread", "time"] }
 
+[profile.release]
+# Integer overflow panics in release as in debug: a wrapped count is a silent
+# miscompute, a panic is a loud one.
+overflow-checks = true
+
 [workspace.lints.rust]
+# `deny`, not `forbid`: rig2-sqlite registers the sqlite-vec extension through
+# FFI, on one item, with a `SAFETY:` comment. Nothing else may use `unsafe`.
 unsafe_code = "deny"
-missing_docs = "warn"
-unreachable_pub = "warn"
-rust_2018_idioms = { level = "warn", priority = -1 }
+missing_docs = "forbid"
+unreachable_pub = "forbid"
+dead_code = "forbid"
+unused_must_use = "forbid"
+unconditional_recursion = "forbid"
+# `deny`, not `forbid`: serde's derives expand to `allow(unused_extern_crates)`.
+rust_2018_idioms = { level = "deny", priority = -1 }
 
 [workspace.lints.clippy]
 pedantic = { level = "warn", priority = -1 }
-unwrap_used = "deny"
+nursery = { level = "warn", priority = -1 }
+# `deny`, not `forbid`: `proptest!` expands to an `allow` of one of these.
+suspicious = { level = "deny", priority = -1 }
+
+# Panic-free outside tests (clippy.toml relaxes these inside tests).
+unwrap_used = "forbid"
+panic = "forbid"
+unreachable = "forbid"
+todo = "forbid"
+unimplemented = "forbid"
+dbg_macro = "forbid"
+get_unwrap = "forbid"
+panic_in_result_fn = "forbid"
+exit = "forbid"
+indexing_slicing = "forbid"
+string_slice = "forbid"
+expect_fun_call = "forbid"
+infinite_loop = "forbid"
+large_stack_frames = "forbid"
+large_stack_arrays = "forbid"
+read_zero_byte_vec = "forbid"
+debug_assert_with_mut_call = "forbid"
+significant_drop_in_scrutinee = "forbid"
+unchecked_time_subtraction = "forbid"
+unused_result_ok = "forbid"
+mem_forget = "forbid"
+await_holding_lock = "forbid"
+await_holding_refcell_ref = "forbid"
+# `deny`, not `forbid`: `#[tokio::test]` expands to an `allow` of these two.
 expect_used = "deny"
-panic = "deny"
-todo = "deny"
-unimplemented = "deny"
-dbg_macro = "deny"
+unwrap_in_result = "deny"
+
+# Lossy conversions and silent failures.
+cast_lossless = "forbid"
+cast_possible_truncation = "forbid"
+cast_sign_loss = "forbid"
+cast_possible_wrap = "forbid"
+lossy_float_literal = "forbid"
+float_cmp_const = "forbid"
+rc_buffer = "forbid"
+rest_pat_in_fully_bound_structs = "forbid"
+map_err_ignore = "forbid"
+
+# Suppress with `#[expect(.., reason = "..")]`, never `#[allow]`.
+allow_attributes = "forbid"
+allow_attributes_without_reason = "forbid"
+
 print_stdout = "warn"
-# Pedantic lints this workspace does not follow; see AGENTS.md.
+
+# Pedantic and nursery lints this workspace does not follow; see AGENTS.md.
 module_name_repetitions = "allow"
 must_use_candidate = "allow"
 missing_errors_doc = "allow"
@@ -57,11 +110,15 @@ missing_panics_doc = "allow"
 return_self_not_must_use = "allow"
 similar_names = "allow"
 too_many_lines = "allow"
-cast_possible_truncation = "allow"
 cast_precision_loss = "allow"
-cast_sign_loss = "allow"
-cast_possible_wrap = "allow"
 items_after_statements = "allow"
 struct_field_names = "allow"
 doc_markdown = "allow"
 single_match_else = "allow"
+cognitive_complexity = "allow"
+option_if_let_else = "allow"
+significant_drop_tightening = "allow"
+missing_const_for_fn = "allow"
+# Conflicts with rustc's `unreachable_pub`: a crate-visible helper in a private
+# module must be `pub(crate)`.
+redundant_pub_crate = "allow"

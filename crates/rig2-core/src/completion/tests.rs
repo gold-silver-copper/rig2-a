@@ -137,7 +137,7 @@ proptest! {
                 AssistantContent::Text(t) => Expect::Text(t.text.clone()),
                 AssistantContent::Reasoning(r) => Expect::Reasoning(r.text.clone()),
                 AssistantContent::ToolCall(c) => Expect::Tool(c.arguments.clone()),
-                AssistantContent::Image(_) => unreachable!(),
+                AssistantContent::Image(_) => panic!("no images are written"),
             })
             .collect();
         prop_assert_eq!(got, expect);

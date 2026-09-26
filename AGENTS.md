@@ -35,14 +35,28 @@ Rules for anyone, human or agent, changing this repository.
 - Never commit secrets. Recordings and cassettes are scrubbed as they are
   written, and `cargo xtask scan` checks every fixture. Run it before pushing.
 
-## Clippy
+## Lints
 
-`clippy::pedantic` is on, with these exceptions, allowed in the workspace
-manifest: `module_name_repetitions`, `must_use_candidate`,
-`missing_errors_doc`, `missing_panics_doc`, `return_self_not_must_use`,
-`similar_names`, `too_many_lines`, `doc_markdown`, `single_match_else`, the four numeric `cast_*` lints,
-`items_after_statements` and `struct_field_names`. Errors are documented in
-prose where they are not obvious.
+The workspace manifest is the source of truth. The policy, taken from rig's
+and koh's lint sets:
+
+- `forbid` is the default for every correctness and panic-freedom lint:
+  `unwrap_used`, `panic`, `unreachable`, `todo`, `unimplemented`,
+  `dbg_macro`, `indexing_slicing`, `string_slice`, `get_unwrap`,
+  `panic_in_result_fn`, `exit`, `await_holding_lock`, `unused_result_ok`,
+  `map_err_ignore`, the lossy `cast_*` lints, `allow_attributes` and more.
+  `clippy.toml` relaxes the panic lints inside tests only.
+- `deny` only where a dependency's macro expands to an `allow` that `forbid`
+  would reject: `expect_used` and `unwrap_in_result` (`#[tokio::test]`), the
+  `suspicious` group (`proptest!`) and `rust_2018_idioms` (serde's derives).
+  `unsafe_code` is `deny` for one FFI item in rig2-sqlite.
+- `clippy::pedantic` and `clippy::nursery` are on as warnings (errors under
+  `-D warnings`), minus a short allow list at the end of the manifest:
+  naming and documentation lints, `cast_precision_loss`,
+  `redundant_pub_crate` (it contradicts rustc's `unreachable_pub`) and
+  nursery lints with known false positives.
+- Suppress a lint locally with `#[expect(lint, reason = "...")]`, never
+  `#[allow]`.
 
 ## Documentation style
 

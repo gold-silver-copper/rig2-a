@@ -107,7 +107,7 @@ impl Task for ImageEmbedding {
 }
 
 /// Images to embed.
-#[derive(Debug, Clone, PartialEq, Default, Serialize, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Eq, Default, Serialize, Deserialize)]
 pub struct ImageEmbeddingRequest {
     /// The images, one vector each.
     pub images: Vec<EncodedImage>,

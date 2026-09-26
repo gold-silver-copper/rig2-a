@@ -21,8 +21,13 @@
 //! # Ok(()) }
 //! ```
 
-// Lets macro-generated paths name this crate from inside it and its tests.
-#[allow(unused_extern_crates)]
+#[cfg_attr(
+    not(test),
+    expect(
+        unused_extern_crates,
+        reason = "lets macro-generated paths name this crate from inside it and its tests"
+    )
+)]
 extern crate self as rig2_agent;
 
 mod agent;

@@ -22,7 +22,7 @@ use serde::{Deserialize, Serialize};
 use crate::{Error, ErrorKind, Result};
 
 /// One turn of a conversation.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(tag = "role", rename_all = "snake_case")]
 pub enum Message {
     /// What the user (or the application on the user's behalf) said,
@@ -94,7 +94,7 @@ pub(crate) fn join_text<'a>(parts: impl Iterator<Item = &'a str>) -> String {
 }
 
 /// A part of a user turn.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(tag = "type", rename_all = "snake_case")]
 pub enum UserContent {
     /// Text.
@@ -110,7 +110,7 @@ pub enum UserContent {
 }
 
 /// A part of an assistant turn.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(tag = "type", rename_all = "snake_case")]
 pub enum AssistantContent {
     /// Text, possibly with citations.
@@ -124,7 +124,7 @@ pub enum AssistantContent {
 }
 
 /// Text, with the sources it cites.
-#[derive(Debug, Clone, PartialEq, Default, Serialize, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Eq, Default, Serialize, Deserialize)]
 pub struct Text {
     /// The text.
     pub text: String,
@@ -147,7 +147,7 @@ impl Text {
 }
 
 /// A source that a text part cites.
-#[derive(Debug, Clone, PartialEq, Default, Serialize, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Eq, Default, Serialize, Deserialize)]
 pub struct Citation {
     /// The cited passage.
     #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -167,7 +167,7 @@ pub struct Citation {
 }
 
 /// Where media bytes come from.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(rename_all = "snake_case")]
 pub enum Source {
     /// The bytes themselves, serialized as base64.
@@ -177,7 +177,7 @@ pub enum Source {
 }
 
 /// An image in a message.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Image {
     /// The image data or its URL.
     pub source: Source,
@@ -210,7 +210,7 @@ impl Image {
 }
 
 /// An audio clip in a message.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Audio {
     /// The audio data or its URL.
     pub source: Source,
@@ -222,7 +222,7 @@ pub struct Audio {
 }
 
 /// A document in a message.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct File {
     /// The file data or its URL.
     pub source: Source,
@@ -237,7 +237,7 @@ pub struct File {
 }
 
 /// A request from the model to call a tool.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ToolCall {
     /// The id the result must refer to.
     pub id: String,
@@ -267,7 +267,7 @@ impl ToolCall {
 }
 
 /// The result of running a tool, sent back to the model.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ToolResult {
     /// The id of the call this answers.
     pub call_id: String,
@@ -322,7 +322,7 @@ impl ToolResult {
 }
 
 /// One piece of a tool's output.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(tag = "type", content = "value", rename_all = "snake_case")]
 pub enum ToolOutput {
     /// Text.
@@ -338,7 +338,7 @@ pub enum ToolOutput {
 /// Providers differ in what they expose: summarized text, a signature that
 /// must be sent back verbatim, or an encrypted blob. A part keeps whatever the
 /// provider sent so the next turn can return it unchanged.
-#[derive(Debug, Clone, PartialEq, Default, Serialize, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Eq, Default, Serialize, Deserialize)]
 pub struct Reasoning {
     /// The reasoning text or summary, possibly empty.
     pub text: String,
@@ -378,7 +378,7 @@ pub trait Extension: Serialize + DeserializeOwned {
 ///
 /// Values are stored as JSON so that messages stay plain data, and read back
 /// through the typed [`Extension`] that owns the key.
-#[derive(Debug, Clone, PartialEq, Default, Serialize, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Eq, Default, Serialize, Deserialize)]
 #[serde(transparent)]
 pub struct Extensions(BTreeMap<String, serde_json::Value>);
 

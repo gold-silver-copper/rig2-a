@@ -100,7 +100,7 @@ impl AudioFormat {
 }
 
 /// Synthesized speech.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct SpeechResponse {
     /// The audio bytes.
     #[serde(with = "crate::base64_bytes")]

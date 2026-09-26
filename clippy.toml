@@ -1,4 +1,7 @@
+# Tests may unwrap, expect, panic and index: a failed assertion in a test is
+# the test failing. Everything else stays panic-free.
 allow-unwrap-in-tests = true
 allow-expect-in-tests = true
 allow-panic-in-tests = true
+allow-indexing-slicing-in-tests = true
 allow-dbg-in-tests = true

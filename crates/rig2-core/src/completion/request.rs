@@ -144,7 +144,7 @@ impl From<Vec<Message>> for CompletionRequest {
 }
 
 /// A tool the model may call.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ToolDefinition {
     /// The name the model uses to call it.
     pub name: String,
@@ -176,7 +176,7 @@ impl ToolChoice {
 }
 
 /// A JSON schema the reply must follow.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct OutputSchema {
     /// A short name for the schema, required by some providers.
     pub name: String,
@@ -196,7 +196,7 @@ impl OutputSchema {
 }
 
 /// Keep only the characters every provider accepts in a schema or tool name.
-pub(crate) fn sanitize_name(name: &str) -> String {
+fn sanitize_name(name: &str) -> String {
     let cleaned: String = name
         .chars()
         .map(|c| {
@@ -249,7 +249,10 @@ pub enum CacheHint {
 }
 
 impl CacheHint {
-    #[allow(clippy::trivially_copy_pass_by_ref)] // serde's `skip_serializing_if` passes a reference
+    #[expect(
+        clippy::trivially_copy_pass_by_ref,
+        reason = "serde's `skip_serializing_if` passes a reference"
+    )]
     fn is_none(&self) -> bool {
         *self == Self::None
     }

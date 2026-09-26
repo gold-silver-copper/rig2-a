@@ -255,11 +255,11 @@ pub enum Filter {
         values: Vec<Scalar>,
     },
     /// All must match.
-    And(Vec<Filter>),
+    And(Vec<Self>),
     /// Any must match.
-    Or(Vec<Filter>),
+    Or(Vec<Self>),
     /// Must not match.
-    Not(Box<Filter>),
+    Not(Box<Self>),
 }
 
 impl Filter {

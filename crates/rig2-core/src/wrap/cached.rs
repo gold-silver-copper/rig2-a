@@ -76,12 +76,12 @@ where
             Ok(key) => key,
             Err(error) => return Box::pin(std::future::ready(Err(error.into()))),
         };
-        if let Some(hit) = self
+        let hit = self
             .cache
             .lock()
             .unwrap_or_else(PoisonError::into_inner)
-            .get(&key)
-        {
+            .get(&key);
+        if let Some(hit) = hit {
             return Box::pin(std::future::ready(Ok(hit)));
         }
         let (call, cache) = (self.inner.invoke(input), Arc::clone(&self.cache));

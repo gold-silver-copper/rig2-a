@@ -18,7 +18,7 @@ use crate::run::{AgentRun, Decision, Outcome, RunSettings, Step};
 use crate::tool::{Tool, ToolContext, ToolSet};
 
 /// Whether a hook lets the run go on.
-#[derive(Debug, Clone, PartialEq)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 pub enum Control<T> {
     /// Go on, with this value.
     Continue(T),
@@ -123,7 +123,7 @@ impl Agent {
         let model: Arc<dyn StreamingModel<Completion>> = Arc::new(model);
         let card: ModelCard = model.capabilities();
         AgentBuilder {
-            agent: Agent {
+            agent: Self {
                 model,
                 tools: ToolSet::new(),
                 settings: RunSettings::default(),
@@ -167,7 +167,10 @@ impl Agent {
         let run = self.drive(self.start(history, prompt), |_| {}).await?;
         if let Some((memory, conversation)) = &self.memory {
             memory
-                .append(conversation, run.messages()[known..].to_vec())
+                .append(
+                    conversation,
+                    run.messages().get(known..).unwrap_or_default().to_vec(),
+                )
                 .await?;
         }
         match run.next() {

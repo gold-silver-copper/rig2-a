@@ -263,24 +263,42 @@ impl StreamWriter {
     }
 
     /// End a text block.
-    #[allow(clippy::needless_pass_by_value)] // consuming the handle is what ends the block
+    #[expect(
+        clippy::needless_pass_by_value,
+        reason = "consuming the handle is what ends the block"
+    )]
     pub fn end_text(&mut self, block: TextBlock) {
-        self.close(block.0).ok();
+        if let Some(Open::Text(text)) = self.open.remove(&block.0) {
+            self.end(block.0, AssistantContent::Text(text));
+        }
     }
 
     /// End a reasoning block.
-    #[allow(clippy::needless_pass_by_value)] // consuming the handle is what ends the block
+    #[expect(
+        clippy::needless_pass_by_value,
+        reason = "consuming the handle is what ends the block"
+    )]
     pub fn end_reasoning(&mut self, block: ReasoningBlock) {
-        self.close(block.0).ok();
+        if let Some(Open::Reasoning(reasoning)) = self.open.remove(&block.0) {
+            self.end(block.0, AssistantContent::Reasoning(reasoning));
+        }
     }
 
     /// End a tool-call block, parsing its arguments.
     ///
     /// Empty arguments parse as `{}`. Fails with
     /// [`ErrorKind::MalformedToolInput`] when the arguments are not JSON.
-    #[allow(clippy::needless_pass_by_value)] // consuming the handle is what ends the block
+    #[expect(
+        clippy::needless_pass_by_value,
+        reason = "consuming the handle is what ends the block"
+    )]
     pub fn end_tool_call(&mut self, block: ToolCallBlock) -> Result<()> {
         self.close(block.0)
+    }
+
+    fn end(&mut self, index: u32, content: AssistantContent) {
+        self.events
+            .push_back(StreamEvent::BlockEnd { index, content });
     }
 
     /// Write a whole part: a start, one fragment for text-like parts, and an

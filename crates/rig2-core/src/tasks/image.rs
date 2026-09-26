@@ -78,7 +78,7 @@ pub enum ImageQuality {
 }
 
 /// Generated images.
-#[derive(Debug, Clone, PartialEq, Default, Serialize, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Eq, Default, Serialize, Deserialize)]
 pub struct ImageGenerationResponse {
     /// The images.
     pub images: Vec<GeneratedImage>,
@@ -88,7 +88,7 @@ pub struct ImageGenerationResponse {
 }
 
 /// One generated image.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct GeneratedImage {
     /// The image.
     pub image: EncodedImage,

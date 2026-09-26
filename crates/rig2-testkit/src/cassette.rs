@@ -21,7 +21,7 @@ use crate::scrub::{is_sensitive_header, scrub_text};
 
 /// A body as stored: JSON when it parses, text when it is UTF-8, base64
 /// otherwise.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(rename_all = "snake_case")]
 pub enum StoredBody {
     /// A JSON document.
@@ -60,7 +60,7 @@ impl StoredBody {
 }
 
 /// One recorded request.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct StoredRequest {
     /// The method.
     pub method: String,
@@ -73,7 +73,7 @@ pub struct StoredRequest {
 }
 
 /// One recorded response.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct StoredResponse {
     /// The status code.
     pub status: u16,
@@ -84,7 +84,7 @@ pub struct StoredResponse {
 }
 
 /// A request and its response.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Interaction {
     /// What was sent.
     pub request: StoredRequest,
@@ -93,7 +93,7 @@ pub struct Interaction {
 }
 
 /// The file format: interactions in the order they happened.
-#[derive(Debug, Clone, PartialEq, Default, Serialize, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Eq, Default, Serialize, Deserialize)]
 pub struct Tape {
     /// The interactions.
     pub interactions: Vec<Interaction>,
@@ -228,7 +228,7 @@ impl Cassette {
             .iter()
             .enumerate()
             .find(|(i, interaction)| {
-                !used[*i]
+                used.get(*i) == Some(&false)
                     && interaction.request.method == request.method
                     && interaction.request.uri == request.uri
                     && interaction.request.body == request.body
@@ -244,7 +244,9 @@ impl Cassette {
                 ),
             ));
         };
-        used[index] = true;
+        if let Some(slot) = used.get_mut(index) {
+            *slot = true;
+        }
         let mut builder = http::Response::builder().status(interaction.response.status);
         for (name, value) in &interaction.response.headers {
             builder = builder.header(name, value);

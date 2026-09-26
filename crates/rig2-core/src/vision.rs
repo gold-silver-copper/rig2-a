@@ -11,7 +11,7 @@ use serde::{Deserialize, Serialize};
 use crate::{StreamingTask, Task};
 
 /// An encoded image: its bytes and media type.
-#[derive(Debug, Clone, PartialEq, Default, Serialize, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Eq, Default, Serialize, Deserialize)]
 pub struct EncodedImage {
     /// The media type, such as `image/png`.
     pub media_type: String,
@@ -50,7 +50,7 @@ impl Task for ImageClassification {
 }
 
 /// An image to classify.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ClassificationRequest {
     /// The image.
     pub image: EncodedImage,
@@ -87,7 +87,7 @@ impl Task for SemanticSegmentation {
 }
 
 /// A class index for every pixel.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct SegmentationMask {
     /// Width in pixels, equal to the input's.
     pub width: u32,
@@ -323,7 +323,7 @@ impl Skeleton {
 }
 
 /// What a vision model declares: its input size and label set.
-#[derive(Debug, Clone, PartialEq, Default, Serialize, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Eq, Default, Serialize, Deserialize)]
 pub struct VisionCapabilities {
     /// The width and height the model resizes inputs to.
     #[serde(default, skip_serializing_if = "Option::is_none")]

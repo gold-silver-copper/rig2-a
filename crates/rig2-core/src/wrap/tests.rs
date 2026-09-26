@@ -118,14 +118,10 @@ async fn retry_honours_retry_after_up_to_the_cap() {
 async fn fallback_moves_on_until_a_model_succeeds() {
     let (first, first_calls) = Scripted::new(vec![Err(Error::new(ErrorKind::NotFound, "gone"))]);
     let (second, _) = Scripted::new(vec![Ok("second".into())]);
-    let model = Fallback::new(vec![
-        Arc::new(first) as Arc<dyn Model<Echo>>,
-        Arc::new(second),
-    ])
-    .unwrap();
+    let second: Arc<dyn Model<Echo>> = Arc::new(second);
+    let model = Fallback::new(Arc::new(first) as Arc<dyn Model<Echo>>, [second]);
     assert_eq!(model.run("x").await.unwrap(), "second");
     assert_eq!(first_calls.load(Ordering::SeqCst), 1);
-    assert!(Fallback::<Arc<dyn Model<Echo>>>::new(vec![]).is_err());
 }
 
 #[tokio::test]

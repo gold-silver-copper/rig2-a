@@ -5,7 +5,10 @@ use super::*;
 /// Fake secrets are assembled at runtime so that no key-shaped literal is
 /// ever committed, even in tests.
 fn fake(prefix: &str, len: usize) -> String {
-    format!("{prefix}{}", "Ab1".repeat(len / 3 + 1)[..len].to_owned())
+    format!(
+        "{prefix}{}",
+        "Ab1".chars().cycle().take(len).collect::<String>()
+    )
 }
 
 #[test]

@@ -343,7 +343,10 @@ impl fmt::Display for RecordedSource {
 
 impl std::error::Error for RecordedSource {}
 
-#[allow(clippy::ref_option)] // serde's `serialize_with` signature
+#[expect(
+    clippy::ref_option,
+    reason = "serde's `serialize_with` passes `&Option`"
+)]
 fn ser_source<S: Serializer>(source: &Option<Source>, serializer: S) -> Result<S::Ok, S::Error> {
     match source {
         Some(source) => serializer.serialize_some(&source.to_string()),

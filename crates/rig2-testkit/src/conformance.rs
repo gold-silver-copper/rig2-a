@@ -250,7 +250,11 @@ async fn case(model: Arc<dyn StreamingModel<Completion>>, case: Case) -> Outcome
                     let calls = r.tool_calls();
                     check(
                         calls.first().is_some_and(|c| {
-                            c.name == "get_weather" && c.arguments["city"].as_str().is_some()
+                            c.name == "get_weather"
+                                && c.arguments
+                                    .get("city")
+                                    .and_then(serde_json::Value::as_str)
+                                    .is_some()
                         }),
                         format!("tool calls: {calls:?}"),
                     )

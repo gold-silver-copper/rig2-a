@@ -39,10 +39,6 @@
 //! assert_eq!(reply.text(), "hello");
 //! ```
 
-// Lets macro-generated paths name this crate from inside it and its tests.
-#[allow(unused_extern_crates)]
-extern crate self as rig2_core;
-
 mod base64_bytes;
 mod error;
 mod send;

@@ -36,7 +36,9 @@ impl Limits {
         let mut bucket = self.bucket.lock().unwrap_or_else(PoisonError::into_inner);
         let now = Instant::now();
         let elapsed = now.duration_since(bucket.refilled).as_secs_f64();
-        bucket.tokens = (bucket.tokens + elapsed * self.refill_per_sec).min(self.capacity);
+        bucket.tokens = elapsed
+            .mul_add(self.refill_per_sec, bucket.tokens)
+            .min(self.capacity);
         bucket.refilled = now;
         if bucket.tokens >= 1.0 {
             bucket.tokens -= 1.0;
