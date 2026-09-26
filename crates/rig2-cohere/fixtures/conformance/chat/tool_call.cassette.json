@@ -1,0 +1,164 @@
+{
+  "interactions": [
+    {
+      "request": {
+        "method": "POST",
+        "uri": "https://api.cohere.com/v2/chat",
+        "headers": [
+          [
+            "content-type",
+            "application/json"
+          ]
+        ],
+        "body": {
+          "json": {
+            "max_tokens": 512,
+            "messages": [
+              {
+                "content": [
+                  {
+                    "text": "What is the weather in Paris? Use the tool.",
+                    "type": "text"
+                  }
+                ],
+                "role": "user"
+              }
+            ],
+            "model": "command-r7b-12-2024",
+            "stream": false,
+            "tools": [
+              {
+                "function": {
+                  "description": "Get the current weather in a city.",
+                  "name": "get_weather",
+                  "parameters": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "city": {
+                        "description": "The city name.",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "city"
+                    ],
+                    "type": "object"
+                  }
+                },
+                "type": "function"
+              }
+            ]
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": [
+          [
+            "access-control-expose-headers",
+            "X-Debug-Trace-ID"
+          ],
+          [
+            "cache-control",
+            "no-cache, no-store, no-transform, must-revalidate, private, max-age=0"
+          ],
+          [
+            "content-type",
+            "application/json"
+          ],
+          [
+            "expires",
+            "Thu, 01 Jan 1970 00:00:00 GMT"
+          ],
+          [
+            "num_chars",
+            "6830"
+          ],
+          [
+            "pragma",
+            "no-cache"
+          ],
+          [
+            "vary",
+            "Origin"
+          ],
+          [
+            "x-accel-expires",
+            "0"
+          ],
+          [
+            "x-debug-trace-id",
+            "c7c2d549daf82f86250c7711e2e247ff"
+          ],
+          [
+            "x-endpoint-monthly-call-limit",
+            "1000"
+          ],
+          [
+            "x-trial-endpoint-call-limit",
+            "20"
+          ],
+          [
+            "x-trial-endpoint-call-remaining",
+            "17"
+          ],
+          [
+            "date",
+            "Sat, 26 Sep 2026 20:55:04 GMT"
+          ],
+          [
+            "content-length",
+            "439"
+          ],
+          [
+            "x-envoy-upstream-service-time",
+            "718"
+          ],
+          [
+            "server",
+            "envoy"
+          ],
+          [
+            "via",
+            "1.1 google"
+          ],
+          [
+            "alt-svc",
+            "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+          ]
+        ],
+        "body": {
+          "json": {
+            "finish_reason": "TOOL_CALL",
+            "id": "c889be93-ef55-4a6b-b595-8550740f9efc",
+            "message": {
+              "role": "assistant",
+              "tool_calls": [
+                {
+                  "function": {
+                    "arguments": "{\"city\":\"Paris\"}",
+                    "name": "get_weather"
+                  },
+                  "id": "get_weather_p11adj5ebx3z",
+                  "type": "function"
+                }
+              ],
+              "tool_plan": "I will use the tool to find the weather in Paris."
+            },
+            "usage": {
+              "billed_units": {
+                "input_tokens": 51,
+                "output_tokens": 20
+              },
+              "cached_tokens": 1024,
+              "tokens": {
+                "input_tokens": 1454,
+                "output_tokens": 50
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

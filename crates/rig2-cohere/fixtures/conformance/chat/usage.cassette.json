@@ -1,0 +1,137 @@
+{
+  "interactions": [
+    {
+      "request": {
+        "method": "POST",
+        "uri": "https://api.cohere.com/v2/chat",
+        "headers": [
+          [
+            "content-type",
+            "application/json"
+          ]
+        ],
+        "body": {
+          "json": {
+            "max_tokens": 512,
+            "messages": [
+              {
+                "content": [
+                  {
+                    "text": "Say hi.",
+                    "type": "text"
+                  }
+                ],
+                "role": "user"
+              }
+            ],
+            "model": "command-r7b-12-2024",
+            "stream": false
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": [
+          [
+            "access-control-expose-headers",
+            "X-Debug-Trace-ID"
+          ],
+          [
+            "cache-control",
+            "no-cache, no-store, no-transform, must-revalidate, private, max-age=0"
+          ],
+          [
+            "content-type",
+            "application/json"
+          ],
+          [
+            "expires",
+            "Thu, 01 Jan 1970 00:00:00 GMT"
+          ],
+          [
+            "num_chars",
+            "2585"
+          ],
+          [
+            "pragma",
+            "no-cache"
+          ],
+          [
+            "vary",
+            "Origin"
+          ],
+          [
+            "x-accel-expires",
+            "0"
+          ],
+          [
+            "x-debug-trace-id",
+            "9aa5e80a6150d7b32c11a1e82512d017"
+          ],
+          [
+            "x-endpoint-monthly-call-limit",
+            "1000"
+          ],
+          [
+            "x-trial-endpoint-call-limit",
+            "20"
+          ],
+          [
+            "x-trial-endpoint-call-remaining",
+            "11"
+          ],
+          [
+            "date",
+            "Sat, 26 Sep 2026 20:55:26 GMT"
+          ],
+          [
+            "content-length",
+            "304"
+          ],
+          [
+            "x-envoy-upstream-service-time",
+            "208"
+          ],
+          [
+            "server",
+            "envoy"
+          ],
+          [
+            "via",
+            "1.1 google"
+          ],
+          [
+            "alt-svc",
+            "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+          ]
+        ],
+        "body": {
+          "json": {
+            "finish_reason": "COMPLETE",
+            "id": "b50b0b5c-41e6-43da-bc82-5decc5f20f78",
+            "message": {
+              "content": [
+                {
+                  "text": "Hello! How can I help you today?",
+                  "type": "text"
+                }
+              ],
+              "role": "assistant"
+            },
+            "usage": {
+              "billed_units": {
+                "input_tokens": 3,
+                "output_tokens": 9
+              },
+              "cached_tokens": 480,
+              "tokens": {
+                "input_tokens": 498,
+                "output_tokens": 12
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

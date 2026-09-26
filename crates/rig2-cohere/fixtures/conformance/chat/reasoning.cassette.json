@@ -1,0 +1,142 @@
+{
+  "interactions": [
+    {
+      "request": {
+        "method": "POST",
+        "uri": "https://api.cohere.com/v2/chat",
+        "headers": [
+          [
+            "content-type",
+            "application/json"
+          ]
+        ],
+        "body": {
+          "json": {
+            "max_tokens": 4096,
+            "messages": [
+              {
+                "content": [
+                  {
+                    "text": "Is 391 a prime number? Think it through, then answer yes or no.",
+                    "type": "text"
+                  }
+                ],
+                "role": "user"
+              }
+            ],
+            "model": "command-a-reasoning-08-2025",
+            "stream": false,
+            "thinking": {
+              "token_budget": 2048,
+              "type": "enabled"
+            }
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": [
+          [
+            "access-control-expose-headers",
+            "X-Debug-Trace-ID"
+          ],
+          [
+            "cache-control",
+            "no-cache, no-store, no-transform, must-revalidate, private, max-age=0"
+          ],
+          [
+            "content-type",
+            "application/json"
+          ],
+          [
+            "expires",
+            "Thu, 01 Jan 1970 00:00:00 GMT"
+          ],
+          [
+            "num_chars",
+            "6650"
+          ],
+          [
+            "pragma",
+            "no-cache"
+          ],
+          [
+            "vary",
+            "Origin"
+          ],
+          [
+            "x-accel-expires",
+            "0"
+          ],
+          [
+            "x-debug-trace-id",
+            "69c627012bafab2cf7dd33d1d5c04f59"
+          ],
+          [
+            "x-endpoint-monthly-call-limit",
+            "1000"
+          ],
+          [
+            "x-trial-endpoint-call-limit",
+            "20"
+          ],
+          [
+            "x-trial-endpoint-call-remaining",
+            "12"
+          ],
+          [
+            "date",
+            "Sat, 26 Sep 2026 20:55:24 GMT"
+          ],
+          [
+            "x-envoy-upstream-service-time",
+            "6232"
+          ],
+          [
+            "server",
+            "envoy"
+          ],
+          [
+            "via",
+            "1.1 google"
+          ],
+          [
+            "alt-svc",
+            "h3=\":443\"; ma=2592000"
+          ]
+        ],
+        "body": {
+          "json": {
+            "finish_reason": "COMPLETE",
+            "id": "68e66788-1000-4570-8414-60a49ab4569c",
+            "message": {
+              "content": [
+                {
+                  "thinking": "I need to determine if 391 is a prime number. A prime number is only divisible by 1 and itself, so I'll check for divisibility by prime numbers less than its square root.\n\nFirst, I'll calculate the square root of 391, which is approximately 19.77. This means I only need to check prime numbers up to 19.\n\nI'll start by testing divisibility by the smallest primes: 2, 3, 5, 7, 11, 13, 17, and 19.\n\n391 is odd, so it's not divisible by 2. The sum of its digits is 13, which is not divisible by 3, so 391 isn't divisible by 3. It doesn't end in 0 or 5, so 5 isn't a factor.\n\nNext, I'll check divisibility by 7. Dividing 391 by 7 gives approximately 55.857, which is not a whole number, so 7 isn't a factor.\n\nThen, I'll test 11. Using the divisibility rule for 11, the difference between the sum of the digits in the odd positions and the even positions is 3 - 9 = -6, which isn't divisible by 11, so 11 isn't a factor.\n\nMoving on to 13, dividing 391 by 13 gives approximately 30.077, not a whole number, so 13 isn't a factor.\n\nFinally, I'll check 17. Dividing 391 by 17 equals exactly 23, which is a whole number. This means 391 is divisible by both 17 and 23.\n\nSince 391 has factors other than 1 and itself, it is not a prime number.",
+                  "type": "thinking"
+                },
+                {
+                  "text": "To determine whether **391** is a prime number, follow these steps:\n\n### **Step 1: Understand Prime Numbers**\nA **prime number** is a natural number greater than 1 that has no positive divisors other than 1 and itself. If a number has divisors other than 1 and itself, it is called a **composite number**.\n\n### **Step 2: Check Divisibility by Smaller Primes**\nTo check if 391 is prime, test whether it's divisible by prime numbers less than or equal to its square root.\n\n**Calculate the square root of 391:**\n\\[\n\\sqrt{391} \\approx 19.77\n\\]\nSo, check divisibility by prime numbers up to 19: **2, 3, 5, 7, 11, 13, 17, 19**.\n\n1. **Divisible by 2?**\n   - 391 is **odd**, so it's **not divisible by 2**.\n\n2. **Divisible by 3?**\n   - Sum of digits: \\(3 + 9 + 1 = 13\\)\n   - 13 is **not divisible by 3**, so **391 is not divisible by 3**.\n\n3. **Divisible by 5?**\n   - Does not end in **0** or **5**, so **not divisible by 5**.\n\n4. **Divisible by 7?**\n   - \\(391 \\div 7 = 55.857...\\) (not a whole number)\n   - **Not divisible by 7**.\n\n5. **Divisible by 11?**\n   - Difference between sums of alternating digits: \\((3 + 1) - 9 = -5\\)\n   - \\(-5\\) is **not divisible by 11**, so **not divisible by 11**.\n\n6. **Divisible by 13?**\n   - \\(391 \\div 13 \\approx 30.077...\\) (not a whole number)\n   - **Not divisible by 13**.\n\n7. **Divisible by 17?**\n   - \\(391 \\div 17 = 23\\) (a whole number)\n   - **Yes**, 391 is divisible by 17.\n\n### **Step 3: Conclusion**\nSince **391** is divisible by **17** (and **23**), it has divisors other than 1 and itself. Therefore, **391 is not a prime number**.\n\n\\[\n\\boxed{391 \\text{ is } \\textbf{not} \\text{ a prime number.}}\n\\]\n\n**Final Answer:** \\(\\boxed{\\text{No}}\\)",
+                  "type": "text"
+                }
+              ],
+              "role": "assistant"
+            },
+            "usage": {
+              "billed_units": {
+                "input_tokens": 19,
+                "output_tokens": 1039
+              },
+              "cached_tokens": 1344,
+              "tokens": {
+                "input_tokens": 1405,
+                "output_tokens": 1044,
+                "reasoning_tokens": 419
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

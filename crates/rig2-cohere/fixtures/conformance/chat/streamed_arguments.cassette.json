@@ -1,0 +1,128 @@
+{
+  "interactions": [
+    {
+      "request": {
+        "method": "POST",
+        "uri": "https://api.cohere.com/v2/chat",
+        "headers": [
+          [
+            "content-type",
+            "application/json"
+          ]
+        ],
+        "body": {
+          "json": {
+            "max_tokens": 512,
+            "messages": [
+              {
+                "content": [
+                  {
+                    "text": "What is the weather in Paris? Use the tool.",
+                    "type": "text"
+                  }
+                ],
+                "role": "user"
+              }
+            ],
+            "model": "command-r7b-12-2024",
+            "stream": true,
+            "tools": [
+              {
+                "function": {
+                  "description": "Get the current weather in a city.",
+                  "name": "get_weather",
+                  "parameters": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "city": {
+                        "description": "The city name.",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "city"
+                    ],
+                    "type": "object"
+                  }
+                },
+                "type": "function"
+              }
+            ]
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": [
+          [
+            "access-control-expose-headers",
+            "X-Debug-Trace-ID"
+          ],
+          [
+            "cache-control",
+            "no-cache, no-store, no-transform, must-revalidate, private, max-age=0"
+          ],
+          [
+            "content-type",
+            "text/event-stream"
+          ],
+          [
+            "expires",
+            "Thu, 01 Jan 1970 00:00:00 GMT"
+          ],
+          [
+            "pragma",
+            "no-cache"
+          ],
+          [
+            "vary",
+            "Origin"
+          ],
+          [
+            "x-accel-expires",
+            "0"
+          ],
+          [
+            "x-debug-trace-id",
+            "e300f8df2d518c5fddbf34293dfde712"
+          ],
+          [
+            "x-endpoint-monthly-call-limit",
+            "1000"
+          ],
+          [
+            "x-trial-endpoint-call-limit",
+            "20"
+          ],
+          [
+            "x-trial-endpoint-call-remaining",
+            "15"
+          ],
+          [
+            "date",
+            "Sat, 26 Sep 2026 20:55:10 GMT"
+          ],
+          [
+            "x-envoy-upstream-service-time",
+            "101"
+          ],
+          [
+            "server",
+            "envoy"
+          ],
+          [
+            "via",
+            "1.1 google"
+          ],
+          [
+            "alt-svc",
+            "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+          ]
+        ],
+        "body": {
+          "text": "event: message-start\ndata: {\"id\":\"60c55b43-8bc9-479d-a263-54492455112e\",\"type\":\"message-start\",\"delta\":{\"message\":{\"role\":\"assistant\",\"content\":[],\"tool_plan\":\"\",\"tool_calls\":[],\"citations\":[]}}}\n\nevent: tool-plan-delta\ndata: {\"type\":\"tool-plan-delta\",\"delta\":{\"message\":{\"tool_plan\":\"I\"}}}\n\nevent: tool-plan-delta\ndata: {\"type\":\"tool-plan-delta\",\"delta\":{\"message\":{\"tool_plan\":\" will\"}}}\n\nevent: tool-plan-delta\ndata: {\"type\":\"tool-plan-delta\",\"delta\":{\"message\":{\"tool_plan\":\" use\"}}}\n\nevent: tool-plan-delta\ndata: {\"type\":\"tool-plan-delta\",\"delta\":{\"message\":{\"tool_plan\":\" the\"}}}\n\nevent: tool-plan-delta\ndata: {\"type\":\"tool-plan-delta\",\"delta\":{\"message\":{\"tool_plan\":\" tool\"}}}\n\nevent: tool-plan-delta\ndata: {\"type\":\"tool-plan-delta\",\"delta\":{\"message\":{\"tool_plan\":\" to\"}}}\n\nevent: tool-plan-delta\ndata: {\"type\":\"tool-plan-delta\",\"delta\":{\"message\":{\"tool_plan\":\" find\"}}}\n\nevent: tool-plan-delta\ndata: {\"type\":\"tool-plan-delta\",\"delta\":{\"message\":{\"tool_plan\":\" the\"}}}\n\nevent: tool-plan-delta\ndata: {\"type\":\"tool-plan-delta\",\"delta\":{\"message\":{\"tool_plan\":\" weather\"}}}\n\nevent: tool-plan-delta\ndata: {\"type\":\"tool-plan-delta\",\"delta\":{\"message\":{\"tool_plan\":\" in\"}}}\n\nevent: tool-plan-delta\ndata: {\"type\":\"tool-plan-delta\",\"delta\":{\"message\":{\"tool_plan\":\" Paris\"}}}\n\nevent: tool-plan-delta\ndata: {\"type\":\"tool-plan-delta\",\"delta\":{\"message\":{\"tool_plan\":\".\"}}}\n\nevent: tool-call-start\ndata: {\"type\":\"tool-call-start\",\"index\":0,\"delta\":{\"message\":{\"tool_calls\":{\"id\":\"get_weather_vgf7thgb1yem\",\"type\":\"function\",\"function\":{\"name\":\"get_weather\",\"arguments\":\"\"}}}}}\n\nevent: tool-call-delta\ndata: {\"type\":\"tool-call-delta\",\"index\":0,\"delta\":{\"message\":{\"tool_calls\":{\"function\":{\"arguments\":\"{\\\"\"}}}}}\n\nevent: tool-call-delta\ndata: {\"type\":\"tool-call-delta\",\"index\":0,\"delta\":{\"message\":{\"tool_calls\":{\"function\":{\"arguments\":\"city\"}}}}}\n\nevent: tool-call-delta\ndata: {\"type\":\"tool-call-delta\",\"index\":0,\"delta\":{\"message\":{\"tool_calls\":{\"function\":{\"arguments\":\"\\\":\"}}}}}\n\nevent: tool-call-delta\ndata: {\"type\":\"tool-call-delta\",\"index\":0,\"delta\":{\"message\":{\"tool_calls\":{\"function\":{\"arguments\":\" \\\"\"}}}}}\n\nevent: tool-call-delta\ndata: {\"type\":\"tool-call-delta\",\"index\":0,\"delta\":{\"message\":{\"tool_calls\":{\"function\":{\"arguments\":\"Paris\"}}}}}\n\nevent: tool-call-delta\ndata: {\"type\":\"tool-call-delta\",\"index\":0,\"delta\":{\"message\":{\"tool_calls\":{\"function\":{\"arguments\":\"\\\"}\"}}}}}\n\nevent: tool-call-end\ndata: {\"type\":\"tool-call-end\",\"index\":0}\n\nevent: message-end\ndata: {\"type\":\"message-end\",\"delta\":{\"finish_reason\":\"TOOL_CALL\",\"usage\":{\"billed_units\":{\"input_tokens\":51,\"output_tokens\":20},\"tokens\":{\"input_tokens\":1454,\"output_tokens\":50},\"cached_tokens\":1024}}}\n\ndata: [DONE]\n\n"
+        }
+      }
+    }
+  ]
+}

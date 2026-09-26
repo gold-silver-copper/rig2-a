@@ -1,0 +1,93 @@
+{
+  "interactions": [
+    {
+      "request": {
+        "method": "POST",
+        "uri": "https://api.cohere.com/v2/chat",
+        "headers": [
+          [
+            "content-type",
+            "application/json"
+          ]
+        ],
+        "body": {
+          "json": {
+            "max_tokens": 512,
+            "messages": [
+              {
+                "content": [
+                  {
+                    "text": "hi",
+                    "type": "text"
+                  }
+                ],
+                "role": "user"
+              }
+            ],
+            "model": "command-r7b-12-2024",
+            "stream": false
+          }
+        }
+      },
+      "response": {
+        "status": 401,
+        "headers": [
+          [
+            "cache-control",
+            "no-cache, no-store, no-transform, must-revalidate, private, max-age=0"
+          ],
+          [
+            "content-type",
+            "application/json"
+          ],
+          [
+            "expires",
+            "Thu, 01 Jan 1970 00:00:00 GMT"
+          ],
+          [
+            "pragma",
+            "no-cache"
+          ],
+          [
+            "vary",
+            "Origin"
+          ],
+          [
+            "x-accel-expires",
+            "0"
+          ],
+          [
+            "date",
+            "Sat, 26 Sep 2026 20:55:28 GMT"
+          ],
+          [
+            "content-length",
+            "184"
+          ],
+          [
+            "x-envoy-upstream-service-time",
+            "2"
+          ],
+          [
+            "server",
+            "envoy"
+          ],
+          [
+            "via",
+            "1.1 google"
+          ],
+          [
+            "alt-svc",
+            "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+          ]
+        ],
+        "body": {
+          "json": {
+            "id": "5d4e9745-b0d0-4673-bb11-43b97ce821ad",
+            "message": "Incorrect API key provided: *************************0000. You can find your API key at https://dashboard.cohere.com/api-keys."
+          }
+        }
+      }
+    }
+  ]
+}

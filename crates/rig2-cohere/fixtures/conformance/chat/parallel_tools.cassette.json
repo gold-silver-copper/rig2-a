@@ -1,0 +1,172 @@
+{
+  "interactions": [
+    {
+      "request": {
+        "method": "POST",
+        "uri": "https://api.cohere.com/v2/chat",
+        "headers": [
+          [
+            "content-type",
+            "application/json"
+          ]
+        ],
+        "body": {
+          "json": {
+            "max_tokens": 512,
+            "messages": [
+              {
+                "content": [
+                  {
+                    "text": "Get the weather in Paris and in Tokyo. Call the tool once per city, in the same reply.",
+                    "type": "text"
+                  }
+                ],
+                "role": "user"
+              }
+            ],
+            "model": "command-a-03-2025",
+            "stream": false,
+            "tools": [
+              {
+                "function": {
+                  "description": "Get the current weather in a city.",
+                  "name": "get_weather",
+                  "parameters": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "city": {
+                        "description": "The city name.",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "city"
+                    ],
+                    "type": "object"
+                  }
+                },
+                "type": "function"
+              }
+            ]
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": [
+          [
+            "access-control-expose-headers",
+            "X-Debug-Trace-ID"
+          ],
+          [
+            "cache-control",
+            "no-cache, no-store, no-transform, must-revalidate, private, max-age=0"
+          ],
+          [
+            "content-type",
+            "application/json"
+          ],
+          [
+            "expires",
+            "Thu, 01 Jan 1970 00:00:00 GMT"
+          ],
+          [
+            "num_chars",
+            "6873"
+          ],
+          [
+            "pragma",
+            "no-cache"
+          ],
+          [
+            "vary",
+            "Origin"
+          ],
+          [
+            "x-accel-expires",
+            "0"
+          ],
+          [
+            "x-debug-trace-id",
+            "2e77bab4cc81a434776a36c7b14b9490"
+          ],
+          [
+            "x-endpoint-monthly-call-limit",
+            "1000"
+          ],
+          [
+            "x-trial-endpoint-call-limit",
+            "20"
+          ],
+          [
+            "x-trial-endpoint-call-remaining",
+            "16"
+          ],
+          [
+            "date",
+            "Sat, 26 Sep 2026 20:55:07 GMT"
+          ],
+          [
+            "content-length",
+            "583"
+          ],
+          [
+            "x-envoy-upstream-service-time",
+            "955"
+          ],
+          [
+            "server",
+            "envoy"
+          ],
+          [
+            "via",
+            "1.1 google"
+          ],
+          [
+            "alt-svc",
+            "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+          ]
+        ],
+        "body": {
+          "json": {
+            "finish_reason": "TOOL_CALL",
+            "id": "f69208ed-a8ec-4503-bcf8-7187e6237f73",
+            "message": {
+              "role": "assistant",
+              "tool_calls": [
+                {
+                  "function": {
+                    "arguments": "{\"city\":\"Paris\"}",
+                    "name": "get_weather"
+                  },
+                  "id": "get_weather_4fa4swh68vxg",
+                  "type": "function"
+                },
+                {
+                  "function": {
+                    "arguments": "{\"city\":\"Tokyo\"}",
+                    "name": "get_weather"
+                  },
+                  "id": "get_weather_kp5m3jew81dm",
+                  "type": "function"
+                }
+              ],
+              "tool_plan": "I will use the 'get_weather' tool to find the weather in Paris and Tokyo."
+            },
+            "usage": {
+              "billed_units": {
+                "input_tokens": 61,
+                "output_tokens": 35
+              },
+              "cached_tokens": 112,
+              "tokens": {
+                "input_tokens": 1464,
+                "output_tokens": 87
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

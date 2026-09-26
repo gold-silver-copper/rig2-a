@@ -1,0 +1,137 @@
+{
+  "interactions": [
+    {
+      "request": {
+        "method": "POST",
+        "uri": "https://api.cohere.com/v2/chat",
+        "headers": [
+          [
+            "content-type",
+            "application/json"
+          ]
+        ],
+        "body": {
+          "json": {
+            "max_tokens": 512,
+            "messages": [
+              {
+                "content": [
+                  {
+                    "text": "Reply with exactly the word: pong",
+                    "type": "text"
+                  }
+                ],
+                "role": "user"
+              }
+            ],
+            "model": "command-r7b-12-2024",
+            "stream": false
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": [
+          [
+            "access-control-expose-headers",
+            "X-Debug-Trace-ID"
+          ],
+          [
+            "cache-control",
+            "no-cache, no-store, no-transform, must-revalidate, private, max-age=0"
+          ],
+          [
+            "content-type",
+            "application/json"
+          ],
+          [
+            "expires",
+            "Thu, 01 Jan 1970 00:00:00 GMT"
+          ],
+          [
+            "num_chars",
+            "2611"
+          ],
+          [
+            "pragma",
+            "no-cache"
+          ],
+          [
+            "vary",
+            "Origin"
+          ],
+          [
+            "x-accel-expires",
+            "0"
+          ],
+          [
+            "x-debug-trace-id",
+            "5b71257f0d5ae3df7b1077ccfd36e364"
+          ],
+          [
+            "x-endpoint-monthly-call-limit",
+            "1000"
+          ],
+          [
+            "x-trial-endpoint-call-limit",
+            "20"
+          ],
+          [
+            "x-trial-endpoint-call-remaining",
+            "19"
+          ],
+          [
+            "date",
+            "Sat, 26 Sep 2026 20:54:59 GMT"
+          ],
+          [
+            "content-length",
+            "275"
+          ],
+          [
+            "x-envoy-upstream-service-time",
+            "127"
+          ],
+          [
+            "server",
+            "envoy"
+          ],
+          [
+            "via",
+            "1.1 google"
+          ],
+          [
+            "alt-svc",
+            "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+          ]
+        ],
+        "body": {
+          "json": {
+            "finish_reason": "COMPLETE",
+            "id": "2f840c0b-9fd8-4470-9611-13f91f86caf6",
+            "message": {
+              "content": [
+                {
+                  "text": "pong",
+                  "type": "text"
+                }
+              ],
+              "role": "assistant"
+            },
+            "usage": {
+              "billed_units": {
+                "input_tokens": 7,
+                "output_tokens": 1
+              },
+              "cached_tokens": 480,
+              "tokens": {
+                "input_tokens": 502,
+                "output_tokens": 4
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}
