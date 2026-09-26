@@ -199,6 +199,20 @@ impl Image {
         }
     }
 
+    /// The media type and bytes, when the image holds bytes rather than a
+    /// URL. A missing media type reads as `application/octet-stream`.
+    pub fn bytes(&self) -> Option<(String, Bytes)> {
+        match &self.source {
+            Source::Bytes(bytes) => Some((
+                self.media_type
+                    .clone()
+                    .unwrap_or_else(|| "application/octet-stream".into()),
+                bytes.clone(),
+            )),
+            Source::Url(_) => None,
+        }
+    }
+
     /// An image the provider fetches from a URL.
     pub fn from_url(url: impl Into<String>) -> Self {
         Self {

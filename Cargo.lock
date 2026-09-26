@@ -1269,6 +1269,21 @@ dependencies = [
 ]
 
 [[package]]
+name = "rig2-gemini"
+version = "0.1.0"
+dependencies = [
+ "bytes",
+ "futures",
+ "http",
+ "rig2-core",
+ "rig2-reqwest",
+ "rig2-testkit",
+ "serde",
+ "serde_json",
+ "tokio",
+]
+
+[[package]]
 name = "rig2-macros"
 version = "0.1.0"
 dependencies = [

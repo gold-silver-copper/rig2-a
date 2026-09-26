@@ -125,7 +125,8 @@ impl Error {
     pub fn from_response(status: u16, body: impl Into<String>, headers: &http::HeaderMap) -> Self {
         let body = body.into();
         let message = extract_message(&body).unwrap_or_else(|| format!("HTTP {status}"));
-        let mut error = Self::new(ErrorKind::from_status(status), message);
+        let kind = kind_from_body(&body).unwrap_or_else(|| ErrorKind::from_status(status));
+        let mut error = Self::new(kind, message);
         error.0.status = Some(status);
         error.0.body = (!body.is_empty()).then_some(body);
         error.0.retry_after = retry_after(headers);
@@ -252,6 +253,32 @@ fn retry_after(headers: &http::HeaderMap) -> Option<Duration> {
         .ok()
         .filter(|s| *s >= 0.0)
         .map(Duration::from_secs_f64)
+}
+
+/// A kind named by the body, which some providers use instead of the HTTP
+/// status: Google's `status` codes, and its `API_KEY_INVALID` reason, which
+/// arrives with HTTP 400.
+fn kind_from_body(body: &str) -> Option<ErrorKind> {
+    let value: serde_json::Value = serde_json::from_str(body).ok()?;
+    let error = value.get("error")?;
+    let invalid_key = error
+        .get("details")
+        .and_then(serde_json::Value::as_array)
+        .into_iter()
+        .flatten()
+        .any(|d| d.get("reason").and_then(serde_json::Value::as_str) == Some("API_KEY_INVALID"));
+    if invalid_key {
+        return Some(ErrorKind::Auth);
+    }
+    match error.get("status").and_then(serde_json::Value::as_str)? {
+        "UNAUTHENTICATED" => Some(ErrorKind::Auth),
+        "PERMISSION_DENIED" => Some(ErrorKind::PermissionDenied),
+        "NOT_FOUND" => Some(ErrorKind::NotFound),
+        "RESOURCE_EXHAUSTED" => Some(ErrorKind::RateLimited),
+        "UNAVAILABLE" | "INTERNAL" => Some(ErrorKind::Unavailable),
+        "DEADLINE_EXCEEDED" => Some(ErrorKind::Timeout),
+        _ => None,
+    }
 }
 
 /// The `message` field most providers put in an error body.

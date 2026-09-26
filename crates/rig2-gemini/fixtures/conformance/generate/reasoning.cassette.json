@@ -1,0 +1,131 @@
+{
+  "interactions": [
+    {
+      "request": {
+        "method": "POST",
+        "uri": "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent",
+        "headers": [
+          [
+            "content-type",
+            "application/json"
+          ]
+        ],
+        "body": {
+          "json": {
+            "contents": [
+              {
+                "parts": [
+                  {
+                    "text": "Is 391 a prime number? Think it through, then answer yes or no."
+                  }
+                ],
+                "role": "user"
+              }
+            ],
+            "generationConfig": {
+              "maxOutputTokens": 4096,
+              "thinkingConfig": {
+                "includeThoughts": true,
+                "thinkingBudget": 2048
+              }
+            }
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": [
+          [
+            "x-gemini-service-tier",
+            "standard"
+          ],
+          [
+            "content-type",
+            "application/json; charset=UTF-8"
+          ],
+          [
+            "vary",
+            "X-Origin"
+          ],
+          [
+            "vary",
+            "Referer"
+          ],
+          [
+            "vary",
+            "Origin,Accept-Encoding"
+          ],
+          [
+            "date",
+            "Sat, 26 Sep 2026 20:47:34 GMT"
+          ],
+          [
+            "server",
+            "scaffolding on HTTPServer2"
+          ],
+          [
+            "x-xss-protection",
+            "0"
+          ],
+          [
+            "x-frame-options",
+            "SAMEORIGIN"
+          ],
+          [
+            "x-content-type-options",
+            "nosniff"
+          ],
+          [
+            "server-timing",
+            "gfet4t7; dur=7244"
+          ],
+          [
+            "alt-svc",
+            "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+          ],
+          [
+            "accept-ranges",
+            "none"
+          ]
+        ],
+        "body": {
+          "json": {
+            "candidates": [
+              {
+                "content": {
+                  "parts": [
+                    {
+                      "text": "**My Primality Check for 391**\n\nOkay, let's see. The task is to determine if 391 is a prime number. Straightforward enough. First, I need to remind myself of the definition: a prime number is a natural number greater than 1 that's only divisible by 1 and itself. No other positive divisors allowed.\n\nNow, the classic method I'll use is trial division. I'll test divisibility by prime numbers, but I can't check *every* number. I remember that I only need to test up to the square root of 391. That's a crucial optimization. Let me estimate that square root... 10 squared is 100, 20 squared is 400, so it's somewhere between 10 and 20. 19 squared is (20-1) squared which is 400 - 40 + 1, so 361. The square root is likely close to 20, but less. 20 would be too large, which means that the square root of 391 is approximately 19.77. Thus, I'll only need to test primes up to 19.\n\nSo, let's list those primes: 2, 3, 5, 7, 11, 13, 17, and 19. Now, let's go through the division.\n\n*   **2:** Nope, it's odd.\n*   **3:** Sum of digits is 13, not divisible by 3.\n*   **5:** Nope, doesn't end in 0 or 5.\n*   **7:** 391 / 7, well, I can estimate it. 7 * 50 = 350. 391 - 350 is 41. 7 goes into 41 five times and has a remainder of 6. So no.\n*   **11:** Alternating sum of digits: 1 - 9 + 3 = -5. Not divisible by 11.\n*   **13:** I can do this more precisely. 13 times 30 is 390. 391 is one more than this. Not divisible by 13.\n*   **17:** Okay, let's see. 17 times 20 is 340. 391 minus 340 is 51. 17 times 3 is 51. Aha! 391 = 17 * 20 + 17 * 3. Therefore, 391 = 17 * 23. Got it! I have a factorization!\n*   **19:** I could keep going, but I don't need to. I already found factors!\n\nSince 391 is divisible by 17 and 23, it's *not* a prime. Therefore, the answer is \"no\". And for proof, the factorization is 17 * 23.\n",
+                      "thought": true
+                    },
+                    {
+                      "text": "No.\n\n391 is not a prime number. It can be factored as 17 × 23."
+                    }
+                  ],
+                  "role": "model"
+                },
+                "finishReason": "STOP",
+                "index": 0
+              }
+            ],
+            "modelVersion": "gemini-2.5-flash",
+            "responseId": "Xi-4aqOzN7GImtkP44aUuQs",
+            "usageMetadata": {
+              "candidatesTokenCount": 25,
+              "promptTokenCount": 20,
+              "promptTokensDetails": [
+                {
+                  "modality": "TEXT",
+                  "tokenCount": 20
+                }
+              ],
+              "serviceTier": "standard",
+              "thoughtsTokenCount": 871,
+              "totalTokenCount": 916
+            }
+          }
+        }
+      }
+    }
+  ]
+}

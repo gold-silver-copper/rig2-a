@@ -1,0 +1,110 @@
+{
+  "interactions": [
+    {
+      "request": {
+        "method": "POST",
+        "uri": "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent",
+        "headers": [
+          [
+            "content-type",
+            "application/json"
+          ]
+        ],
+        "body": {
+          "json": {
+            "contents": [
+              {
+                "parts": [
+                  {
+                    "text": "hi"
+                  }
+                ],
+                "role": "user"
+              }
+            ],
+            "generationConfig": {
+              "maxOutputTokens": 512
+            }
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "headers": [
+          [
+            "vary",
+            "X-Origin"
+          ],
+          [
+            "vary",
+            "Referer"
+          ],
+          [
+            "vary",
+            "Origin,Accept-Encoding"
+          ],
+          [
+            "content-type",
+            "application/json; charset=UTF-8"
+          ],
+          [
+            "date",
+            "Sat, 26 Sep 2026 20:47:34 GMT"
+          ],
+          [
+            "server",
+            "scaffolding on HTTPServer2"
+          ],
+          [
+            "x-xss-protection",
+            "0"
+          ],
+          [
+            "x-frame-options",
+            "SAMEORIGIN"
+          ],
+          [
+            "x-content-type-options",
+            "nosniff"
+          ],
+          [
+            "server-timing",
+            "gfet4t7; dur=38"
+          ],
+          [
+            "alt-svc",
+            "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+          ],
+          [
+            "accept-ranges",
+            "none"
+          ]
+        ],
+        "body": {
+          "json": {
+            "error": {
+              "code": 400,
+              "details": [
+                {
+                  "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+                  "domain": "googleapis.com",
+                  "metadata": {
+                    "service": "generativelanguage.googleapis.com"
+                  },
+                  "reason": "API_KEY_INVALID"
+                },
+                {
+                  "@type": "type.googleapis.com/google.rpc.LocalizedMessage",
+                  "locale": "en-US",
+                  "message": "API key not valid. Please pass a valid API key."
+                }
+              ],
+              "message": "API key not valid. Please pass a valid API key.",
+              "status": "INVALID_ARGUMENT"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

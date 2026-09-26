@@ -1,0 +1,89 @@
+{
+  "interactions": [
+    {
+      "request": {
+        "method": "POST",
+        "uri": "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:streamGenerateContent?alt=sse",
+        "headers": [
+          [
+            "content-type",
+            "application/json"
+          ]
+        ],
+        "body": {
+          "json": {
+            "contents": [
+              {
+                "parts": [
+                  {
+                    "text": "Count from 1 to 5."
+                  }
+                ],
+                "role": "user"
+              }
+            ],
+            "generationConfig": {
+              "maxOutputTokens": 512
+            }
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": [
+          [
+            "content-type",
+            "text/event-stream"
+          ],
+          [
+            "content-disposition",
+            "attachment"
+          ],
+          [
+            "vary",
+            "Origin"
+          ],
+          [
+            "vary",
+            "X-Origin"
+          ],
+          [
+            "vary",
+            "Referer"
+          ],
+          [
+            "date",
+            "Sat, 26 Sep 2026 20:47:24 GMT"
+          ],
+          [
+            "server",
+            "scaffolding on HTTPServer2"
+          ],
+          [
+            "x-xss-protection",
+            "0"
+          ],
+          [
+            "x-frame-options",
+            "SAMEORIGIN"
+          ],
+          [
+            "x-content-type-options",
+            "nosniff"
+          ],
+          [
+            "server-timing",
+            "gfet4t7; dur=267"
+          ],
+          [
+            "alt-svc",
+            "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+          ]
+        ],
+        "body": {
+          "text": "data: {\"candidates\": [{\"content\": {\"parts\": [{\"text\": \"Here'\"}],\"role\": \"model\"},\"index\": 0}],\"usageMetadata\": {\"promptTokenCount\": 9,\"candidatesTokenCount\": 2,\"totalTokenCount\": 11,\"promptTokensDetails\": [{\"modality\": \"TEXT\",\"tokenCount\": 9}],\"serviceTier\": \"standard\"},\"modelVersion\": \"gemini-2.5-flash-lite\",\"responseId\": \"XC-4asLtKLG2qtsPpsOgiQo\"}\r\n\r\ndata: {\"candidates\": [{\"content\": {\"parts\": [{\"text\": \"s the count from 1 to 5:\\n\\n1\\n2\\n3\\n4\"}],\"role\": \"model\"},\"index\": 0}],\"usageMetadata\": {\"promptTokenCount\": 9,\"candidatesTokenCount\": 20,\"totalTokenCount\": 29,\"promptTokensDetails\": [{\"modality\": \"TEXT\",\"tokenCount\": 9}],\"serviceTier\": \"standard\"},\"modelVersion\": \"gemini-2.5-flash-lite\",\"responseId\": \"XC-4asLtKLG2qtsPpsOgiQo\"}\r\n\r\ndata: {\"candidates\": [{\"content\": {\"parts\": [{\"text\": \"\\n5\"}],\"role\": \"model\"},\"finishReason\": \"STOP\",\"index\": 0}],\"usageMetadata\": {\"promptTokenCount\": 9,\"candidatesTokenCount\": 21,\"totalTokenCount\": 30,\"promptTokensDetails\": [{\"modality\": \"TEXT\",\"tokenCount\": 9}],\"serviceTier\": \"standard\"},\"modelVersion\": \"gemini-2.5-flash-lite\",\"responseId\": \"XC-4asLtKLG2qtsPpsOgiQo\"}\r\n\r\n"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,132 @@
+{
+  "interactions": [
+    {
+      "request": {
+        "method": "POST",
+        "uri": "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent",
+        "headers": [
+          [
+            "content-type",
+            "application/json"
+          ]
+        ],
+        "body": {
+          "json": {
+            "contents": [
+              {
+                "parts": [
+                  {
+                    "text": "What single color fills this image? One word."
+                  },
+                  {
+                    "inlineData": {
+                      "data": "iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAIAAADTED8xAAAB+0lEQVR42u3TQQkAAAjAwPUvrX8reHAJBmsK3pIAA4ABwABgADAAGAAMAAYAA4ABwABgADAAGAAMAAYAA4ABwABgADAAGAAMAAYAA4ABwABgADAAGAAMAAYAA4ABwABgADAAGAAMAAYAA4ABwABgADAAGAAMAAYAA4ABwAAYAAwABgADgAHAAGAAMAAYAAwABgADgAHAAGAAMAAYAAwABgADgAHAAGAAMAAYAAwABgADgAHAAGAAMAAYAAwABgADgAHAAGAAMAAYAAwABgADgAHAAGAAMAAYAAwABgAJMAAYAAwABgADgAHAAGAAMAAYAAwABgADgAHAAGAAMAAYAAwABgADgAHAAGAAMAAYAAwABgADgAHAAGAAMAAYAAwABgADgAHAAGAAMAAYAAwABgADgAHAAGAAMAAYAAyAASTAAGAAMAAYAAwABgADgAHAAGAAMAAYAAwABgADgAHAAGAAMAAYAAwABgADgAHAAGAAMAAYAAwABgADgAHAAGAAMAAYAAwABgADgAHAAGAAMAAYAAwABgADgAHAAGAAMAAGAAOAAcAAYAAwABgADAAGAAOAAcAAYAAwABgADAAGAAOAAcAAYAAwABgADAAGAAOAAcAAYAAwABgADAAGAAOAAcAAYAAwABgADAAGAAOAAcAAYAAwABgADADHAllMDvLkz2XNAAAAAElFTkSuQmCC",
+                      "mimeType": "image/png"
+                    }
+                  }
+                ],
+                "role": "user"
+              }
+            ],
+            "generationConfig": {
+              "maxOutputTokens": 512
+            }
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": [
+          [
+            "x-gemini-service-tier",
+            "standard"
+          ],
+          [
+            "content-type",
+            "application/json; charset=UTF-8"
+          ],
+          [
+            "vary",
+            "X-Origin"
+          ],
+          [
+            "vary",
+            "Referer"
+          ],
+          [
+            "vary",
+            "Origin,Accept-Encoding"
+          ],
+          [
+            "date",
+            "Sat, 26 Sep 2026 20:47:26 GMT"
+          ],
+          [
+            "server",
+            "scaffolding on HTTPServer2"
+          ],
+          [
+            "x-xss-protection",
+            "0"
+          ],
+          [
+            "x-frame-options",
+            "SAMEORIGIN"
+          ],
+          [
+            "x-content-type-options",
+            "nosniff"
+          ],
+          [
+            "server-timing",
+            "gfet4t7; dur=506"
+          ],
+          [
+            "alt-svc",
+            "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+          ],
+          [
+            "accept-ranges",
+            "none"
+          ]
+        ],
+        "body": {
+          "json": {
+            "candidates": [
+              {
+                "content": {
+                  "parts": [
+                    {
+                      "text": "Red"
+                    }
+                  ],
+                  "role": "model"
+                },
+                "finishReason": "STOP",
+                "index": 0
+              }
+            ],
+            "modelVersion": "gemini-2.5-flash-lite",
+            "responseId": "Xi-4aom7F9GJmtkPs6bl4Ak",
+            "usageMetadata": {
+              "candidatesTokenCount": 1,
+              "promptTokenCount": 269,
+              "promptTokensDetails": [
+                {
+                  "modality": "TEXT",
+                  "tokenCount": 11
+                },
+                {
+                  "modality": "IMAGE",
+                  "tokenCount": 258
+                }
+              ],
+              "serviceTier": "standard",
+              "totalTokenCount": 270
+            }
+          }
+        }
+      }
+    }
+  ]
+}

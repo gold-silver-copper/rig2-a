@@ -1,0 +1,164 @@
+{
+  "interactions": [
+    {
+      "request": {
+        "method": "POST",
+        "uri": "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent",
+        "headers": [
+          [
+            "content-type",
+            "application/json"
+          ]
+        ],
+        "body": {
+          "json": {
+            "contents": [
+              {
+                "parts": [
+                  {
+                    "text": "What is the capital of France? Answer with the city and its country."
+                  }
+                ],
+                "role": "user"
+              }
+            ],
+            "generationConfig": {
+              "maxOutputTokens": 512
+            },
+            "toolConfig": {
+              "functionCallingConfig": {
+                "allowedFunctionNames": [
+                  "submit_Capital"
+                ],
+                "mode": "ANY"
+              }
+            },
+            "tools": [
+              {
+                "functionDeclarations": [
+                  {
+                    "description": "Submit the answer in the required structure.",
+                    "name": "submit_Capital",
+                    "parametersJsonSchema": {
+                      "$schema": "https://json-schema.org/draft/2020-12/schema",
+                      "properties": {
+                        "city": {
+                          "type": "string"
+                        },
+                        "country": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "city",
+                        "country"
+                      ],
+                      "title": "Capital",
+                      "type": "object"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": [
+          [
+            "x-gemini-service-tier",
+            "standard"
+          ],
+          [
+            "content-type",
+            "application/json; charset=UTF-8"
+          ],
+          [
+            "vary",
+            "X-Origin"
+          ],
+          [
+            "vary",
+            "Referer"
+          ],
+          [
+            "vary",
+            "Origin,Accept-Encoding"
+          ],
+          [
+            "date",
+            "Sat, 26 Sep 2026 20:47:26 GMT"
+          ],
+          [
+            "server",
+            "scaffolding on HTTPServer2"
+          ],
+          [
+            "x-xss-protection",
+            "0"
+          ],
+          [
+            "x-frame-options",
+            "SAMEORIGIN"
+          ],
+          [
+            "x-content-type-options",
+            "nosniff"
+          ],
+          [
+            "server-timing",
+            "gfet4t7; dur=398"
+          ],
+          [
+            "alt-svc",
+            "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+          ],
+          [
+            "accept-ranges",
+            "none"
+          ]
+        ],
+        "body": {
+          "json": {
+            "candidates": [
+              {
+                "content": {
+                  "parts": [
+                    {
+                      "functionCall": {
+                        "args": {
+                          "city": "Paris",
+                          "country": "France"
+                        },
+                        "name": "submit_Capital"
+                      }
+                    }
+                  ],
+                  "role": "model"
+                },
+                "finishMessage": "Model generated function call(s).",
+                "finishReason": "STOP",
+                "index": 0
+              }
+            ],
+            "modelVersion": "gemini-2.5-flash-lite",
+            "responseId": "XS-4aruCPZKhqtsPq8HRiQk",
+            "usageMetadata": {
+              "candidatesTokenCount": 20,
+              "promptTokenCount": 67,
+              "promptTokensDetails": [
+                {
+                  "modality": "TEXT",
+                  "tokenCount": 67
+                }
+              ],
+              "serviceTier": "standard",
+              "totalTokenCount": 87
+            }
+          }
+        }
+      }
+    }
+  ]
+}

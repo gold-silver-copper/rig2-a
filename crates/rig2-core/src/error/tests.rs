@@ -35,3 +35,17 @@ fn client_errors_are_not_retryable() {
         assert!(!error.is_retryable(), "{status}");
     }
 }
+
+#[test]
+fn a_google_invalid_key_is_an_auth_error_despite_its_400() {
+    let body = r#"{"error":{"code":400,"message":"API key not valid.","status":"INVALID_ARGUMENT","details":[{"reason":"API_KEY_INVALID"}]}}"#;
+    assert_eq!(
+        Error::from_response(400, body, &http::HeaderMap::new()).kind(),
+        ErrorKind::Auth
+    );
+    let quota = r#"{"error":{"code":429,"message":"quota","status":"RESOURCE_EXHAUSTED"}}"#;
+    assert_eq!(
+        Error::from_response(429, quota, &http::HeaderMap::new()).kind(),
+        ErrorKind::RateLimited
+    );
+}
