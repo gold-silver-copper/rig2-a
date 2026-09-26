@@ -36,7 +36,7 @@ fn the_request_maps_system_tools_results_images_and_limits() {
                     source: Source::Bytes(vec![4].into()),
                     media_type: "application/pdf".into(),
                     name: Some("a.pdf".into()),
-                    extensions: Default::default(),
+                    extensions: rig2_core::content::Extensions::default(),
                 }),
             ],
         },
