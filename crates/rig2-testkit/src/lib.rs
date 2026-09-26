@@ -8,6 +8,9 @@
 //! - [`scrub`]: the secret scrubber and the fixture scanner.
 //! - [`conformance`]: the provider conformance suite.
 
+pub mod cassette;
+pub mod conformance;
 mod scripted;
+pub mod scrub;
 
 pub use scripted::{Reply, ScriptedModel};

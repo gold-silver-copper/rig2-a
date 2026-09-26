@@ -1,0 +1,21 @@
+[package]
+name = "rig2-tungstenite"
+description = "The tokio-tungstenite WebSocket client for rig2."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+publish.workspace = true
+
+[dependencies]
+futures.workspace = true
+http.workspace = true
+rig2-core = { path = "../rig2-core" }
+tokio-tungstenite.workspace = true
+
+[dev-dependencies]
+tokio = { workspace = true, features = ["net"] }
+
+[lints]
+workspace = true
