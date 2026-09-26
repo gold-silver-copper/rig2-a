@@ -28,6 +28,7 @@ fn suite(api: &'static str) -> Suite {
             vision: Some("gpt-4.1-mini".into()),
             reasoning: Some("gpt-5-nano".into()),
         },
+        pause: std::time::Duration::ZERO,
     }
 }
 

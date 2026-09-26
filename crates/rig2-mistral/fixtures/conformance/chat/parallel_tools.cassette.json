@@ -1,0 +1,180 @@
+{
+  "interactions": [
+    {
+      "request": {
+        "method": "POST",
+        "uri": "https://api.mistral.ai/v1/chat/completions",
+        "headers": [
+          [
+            "content-type",
+            "application/json"
+          ]
+        ],
+        "body": {
+          "json": {
+            "max_tokens": 512,
+            "messages": [
+              {
+                "content": [
+                  {
+                    "text": "Get the weather in Paris and in Tokyo. Call the tool once per city, in the same reply.",
+                    "type": "text"
+                  }
+                ],
+                "role": "user"
+              }
+            ],
+            "model": "ministral-14b-latest",
+            "tool_choice": "auto",
+            "tools": [
+              {
+                "function": {
+                  "description": "Get the current weather in a city.",
+                  "name": "get_weather",
+                  "parameters": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "city": {
+                        "description": "The city name.",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "city"
+                    ],
+                    "type": "object"
+                  }
+                },
+                "type": "function"
+              }
+            ]
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": [
+          [
+            "date",
+            "Sat, 26 Sep 2026 20:51:04 GMT"
+          ],
+          [
+            "content-type",
+            "application/json"
+          ],
+          [
+            "content-length",
+            "607"
+          ],
+          [
+            "mistral-correlation-id",
+            "01a0df7c-5a55-71de-97e4-1a70a7572e67"
+          ],
+          [
+            "x-kong-request-id",
+            "01a0df7c-5a55-71de-97e4-1a70a7572e67"
+          ],
+          [
+            "x-max-retry-attempts-reached",
+            "false"
+          ],
+          [
+            "x-ratelimit-limit-req-minute",
+            "30"
+          ],
+          [
+            "x-ratelimit-remaining-req-minute",
+            "29"
+          ],
+          [
+            "x-envoy-upstream-service-time",
+            "424"
+          ],
+          [
+            "server",
+            "cloudflare"
+          ],
+          [
+            "access-control-allow-origin",
+            "*"
+          ],
+          [
+            "x-kong-upstream-latency",
+            "425"
+          ],
+          [
+            "x-kong-proxy-latency",
+            "19"
+          ],
+          [
+            "cf-cache-status",
+            "DYNAMIC"
+          ],
+          [
+            "strict-transport-security",
+            "max-age=15552000; includeSubDomains; preload"
+          ],
+          [
+            "x-content-type-options",
+            "nosniff"
+          ],
+          [
+            "cf-ray",
+            "a41524fc8ea9cdb0-LAX"
+          ],
+          [
+            "alt-svc",
+            "h3=\":443\"; ma=86400"
+          ]
+        ],
+        "body": {
+          "json": {
+            "choices": [
+              {
+                "finish_reason": "tool_calls",
+                "index": 0,
+                "message": {
+                  "content": "",
+                  "role": "assistant",
+                  "tool_calls": [
+                    {
+                      "function": {
+                        "arguments": "{\"city\": \"Paris\"}",
+                        "name": "get_weather"
+                      },
+                      "id": "zS73XuTyV",
+                      "index": 0,
+                      "type": "function"
+                    },
+                    {
+                      "function": {
+                        "arguments": "{\"city\": \"Tokyo\"}",
+                        "name": "get_weather"
+                      },
+                      "id": "QUDAmxOuP",
+                      "index": 1,
+                      "type": "function"
+                    }
+                  ]
+                }
+              }
+            ],
+            "created": 1790455864,
+            "id": "fe6f2854d310466da26420d3114496ff",
+            "model": "ministral-14b-latest",
+            "object": "chat.completion",
+            "usage": {
+              "completion_tokens": 23,
+              "prompt_tokens": 99,
+              "prompt_tokens_details": {
+                "cached_tokens": 0
+              },
+              "service_tier": "standard",
+              "total_tokens": 122
+            }
+          }
+        }
+      }
+    }
+  ]
+}

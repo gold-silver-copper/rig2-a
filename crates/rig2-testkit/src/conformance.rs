@@ -163,6 +163,9 @@ pub struct Suite {
     pub build: Box<Build>,
     /// Which model each case uses.
     pub models: Models,
+    /// How long to wait between recorded cases, for providers with low rate
+    /// limits. Replays never wait.
+    pub pause: std::time::Duration,
 }
 
 fn weather_tool() -> ToolDefinition {
@@ -388,6 +391,9 @@ pub async fn run(suite: &Suite) -> Vec<(Case, Outcome)> {
                 .fixtures
                 .join(format!("{}.cassette.json", case_id.slug())),
         );
+        if cassette.is_recording() && !suite.pause.is_zero() {
+            futures_timer::Delay::new(suite.pause).await;
+        }
         if !cassette.is_available() {
             results.push((
                 case_id,

@@ -1,0 +1,138 @@
+{
+  "interactions": [
+    {
+      "request": {
+        "method": "POST",
+        "uri": "https://api.mistral.ai/v1/chat/completions",
+        "headers": [
+          [
+            "content-type",
+            "application/json"
+          ]
+        ],
+        "body": {
+          "json": {
+            "max_tokens": 512,
+            "messages": [
+              {
+                "content": [
+                  {
+                    "text": "Reply with exactly the word: pong",
+                    "type": "text"
+                  }
+                ],
+                "role": "user"
+              }
+            ],
+            "model": "ministral-3b-latest"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": [
+          [
+            "date",
+            "Sat, 26 Sep 2026 20:49:59 GMT"
+          ],
+          [
+            "content-type",
+            "application/json"
+          ],
+          [
+            "content-length",
+            "371"
+          ],
+          [
+            "mistral-correlation-id",
+            "01a0df7b-5e3a-7dff-b4b7-c94950eb0cc7"
+          ],
+          [
+            "x-kong-request-id",
+            "01a0df7b-5e3a-7dff-b4b7-c94950eb0cc7"
+          ],
+          [
+            "x-max-retry-attempts-reached",
+            "false"
+          ],
+          [
+            "x-ratelimit-limit-req-minute",
+            "750"
+          ],
+          [
+            "x-ratelimit-remaining-req-minute",
+            "749"
+          ],
+          [
+            "x-envoy-upstream-service-time",
+            "105"
+          ],
+          [
+            "server",
+            "cloudflare"
+          ],
+          [
+            "access-control-allow-origin",
+            "*"
+          ],
+          [
+            "x-kong-upstream-latency",
+            "107"
+          ],
+          [
+            "x-kong-proxy-latency",
+            "12"
+          ],
+          [
+            "cf-cache-status",
+            "DYNAMIC"
+          ],
+          [
+            "strict-transport-security",
+            "max-age=15552000; includeSubDomains; preload"
+          ],
+          [
+            "x-content-type-options",
+            "nosniff"
+          ],
+          [
+            "cf-ray",
+            "a4152369697072cf-LAX"
+          ],
+          [
+            "alt-svc",
+            "h3=\":443\"; ma=86400"
+          ]
+        ],
+        "body": {
+          "json": {
+            "choices": [
+              {
+                "finish_reason": "stop",
+                "index": 0,
+                "message": {
+                  "content": "pong",
+                  "role": "assistant",
+                  "tool_calls": null
+                }
+              }
+            ],
+            "created": 1790455799,
+            "id": "7b014813b7b74855b64958d963baa07d",
+            "model": "ministral-3b-latest",
+            "object": "chat.completion",
+            "usage": {
+              "completion_tokens": 3,
+              "prompt_tokens": 11,
+              "prompt_tokens_details": {
+                "cached_tokens": 0
+              },
+              "service_tier": "standard",
+              "total_tokens": 14
+            }
+          }
+        }
+      }
+    }
+  ]
+}

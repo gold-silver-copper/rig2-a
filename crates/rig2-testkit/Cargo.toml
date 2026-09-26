@@ -12,6 +12,7 @@ publish.workspace = true
 base64.workspace = true
 bytes.workspace = true
 futures.workspace = true
+futures-timer.workspace = true
 http.workspace = true
 regex.workspace = true
 rig2-core = { path = "../rig2-core" }

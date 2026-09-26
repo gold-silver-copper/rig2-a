@@ -49,3 +49,12 @@ fn a_google_invalid_key_is_an_auth_error_despite_its_400() {
         ErrorKind::RateLimited
     );
 }
+
+#[test]
+fn a_429_with_a_zero_limit_means_no_access_and_is_not_retried() {
+    let mut headers = http::HeaderMap::new();
+    headers.insert("x-ratelimit-limit-req-minute", "0".parse().unwrap());
+    let error = Error::from_response(429, "{}", &headers);
+    assert_eq!(error.kind(), ErrorKind::PermissionDenied);
+    assert!(!error.is_retryable());
+}

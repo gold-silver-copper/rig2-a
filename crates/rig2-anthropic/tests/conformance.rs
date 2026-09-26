@@ -27,6 +27,7 @@ async fn messages_api_conforms() {
             vision: Some("claude-haiku-4-5-20251001".into()),
             reasoning: Some("claude-haiku-4-5-20251001".into()),
         },
+        pause: std::time::Duration::ZERO,
     };
     assert_conformant(&run(&suite).await);
 }

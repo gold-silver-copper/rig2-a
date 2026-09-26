@@ -27,6 +27,7 @@ async fn generate_content_conforms() {
             vision: Some("gemini-2.5-flash-lite".into()),
             reasoning: Some("gemini-2.5-flash".into()),
         },
+        pause: std::time::Duration::ZERO,
     };
     assert_conformant(&run(&suite).await);
 }

@@ -1,0 +1,125 @@
+{
+  "interactions": [
+    {
+      "request": {
+        "method": "POST",
+        "uri": "https://api.mistral.ai/v1/chat/completions",
+        "headers": [
+          [
+            "content-type",
+            "application/json"
+          ]
+        ],
+        "body": {
+          "json": {
+            "max_tokens": 512,
+            "messages": [
+              {
+                "content": [
+                  {
+                    "text": "What is the weather in Paris? Use the tool.",
+                    "type": "text"
+                  }
+                ],
+                "role": "user"
+              }
+            ],
+            "model": "ministral-8b-latest",
+            "stream": true,
+            "tool_choice": "auto",
+            "tools": [
+              {
+                "function": {
+                  "description": "Get the current weather in a city.",
+                  "name": "get_weather",
+                  "parameters": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "city": {
+                        "description": "The city name.",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "city"
+                    ],
+                    "type": "object"
+                  }
+                },
+                "type": "function"
+              }
+            ]
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": [
+          [
+            "date",
+            "Sat, 26 Sep 2026 20:50:00 GMT"
+          ],
+          [
+            "content-type",
+            "text/event-stream; charset=utf-8"
+          ],
+          [
+            "mistral-correlation-id",
+            "01a0df7b-633e-7c90-9c89-580c3641d4fb"
+          ],
+          [
+            "x-kong-request-id",
+            "01a0df7b-633e-7c90-9c89-580c3641d4fb"
+          ],
+          [
+            "x-max-retry-attempts-reached",
+            "false"
+          ],
+          [
+            "x-envoy-upstream-service-time",
+            "181"
+          ],
+          [
+            "server",
+            "cloudflare"
+          ],
+          [
+            "access-control-allow-origin",
+            "*"
+          ],
+          [
+            "x-kong-upstream-latency",
+            "182"
+          ],
+          [
+            "x-kong-proxy-latency",
+            "16"
+          ],
+          [
+            "cf-cache-status",
+            "DYNAMIC"
+          ],
+          [
+            "strict-transport-security",
+            "max-age=15552000; includeSubDomains; preload"
+          ],
+          [
+            "x-content-type-options",
+            "nosniff"
+          ],
+          [
+            "cf-ray",
+            "a4152371781a72cf-LAX"
+          ],
+          [
+            "alt-svc",
+            "h3=\":443\"; ma=86400"
+          ]
+        ],
+        "body": {
+          "text": "data: {\"id\":\"7e8884f091f544b39d247121c0fffb52\",\"object\":\"chat.completion.chunk\",\"created\":1790455800,\"model\":\"ministral-8b-latest\",\"choices\":[{\"index\":0,\"delta\":{\"role\":\"assistant\",\"content\":\"\"},\"finish_reason\":null}]}\n\ndata: {\"id\":\"7e8884f091f544b39d247121c0fffb52\",\"object\":\"chat.completion.chunk\",\"created\":1790455800,\"model\":\"ministral-8b-latest\",\"choices\":[{\"index\":0,\"delta\":{\"tool_calls\":[{\"id\":\"PABWe6G74\",\"type\":\"function\",\"function\":{\"name\":\"get_weather\",\"arguments\":\"{\\\"city\\\": \\\"Paris\\\"}\"},\"index\":0}]},\"finish_reason\":\"tool_calls\"}],\"usage\":{\"prompt_tokens\":89,\"total_tokens\":101,\"completion_tokens\":12,\"prompt_tokens_details\":{\"cached_tokens\":0},\"service_tier\":\"standard\"},\"p\":\"abcdefghijklmnopqrstuv\"}\n\ndata: [DONE]\n\n"
+        }
+      }
+    }
+  ]
+}

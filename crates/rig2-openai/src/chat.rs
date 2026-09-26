@@ -317,12 +317,48 @@ fn citations(annotations: Option<&Value>) -> Vec<Citation> {
         .collect()
 }
 
-fn reasoning_text(message: &Value) -> Option<&str> {
-    message
+/// The reasoning and text of a message or delta.
+///
+/// `content` is usually a string. Some providers (Mistral's reasoning
+/// models) send an array of chunks instead, with `thinking` chunks for the
+/// reasoning; others send reasoning as `reasoning_content` or `reasoning`.
+fn pieces(message: &Value) -> (String, String) {
+    let mut reasoning = message
         .get("reasoning_content")
         .or_else(|| message.get("reasoning"))
         .and_then(Value::as_str)
-        .filter(|s| !s.is_empty())
+        .unwrap_or_default()
+        .to_owned();
+    let mut text = String::new();
+    match message.get("content") {
+        Some(Value::String(content)) => text.push_str(content),
+        Some(Value::Array(chunks)) => {
+            for chunk in chunks {
+                match chunk.get("type").and_then(Value::as_str) {
+                    Some("text") => text.push_str(
+                        chunk
+                            .get("text")
+                            .and_then(Value::as_str)
+                            .unwrap_or_default(),
+                    ),
+                    Some("thinking") => match chunk.get("thinking") {
+                        Some(Value::String(thinking)) => reasoning.push_str(thinking),
+                        Some(Value::Array(parts)) => {
+                            for part in parts {
+                                reasoning.push_str(
+                                    part.get("text").and_then(Value::as_str).unwrap_or_default(),
+                                );
+                            }
+                        }
+                        _ => {}
+                    },
+                    _ => {}
+                }
+            }
+        }
+        _ => {}
+    }
+    (reasoning, text)
 }
 
 /// Write a unary Chat Completions reply.
@@ -339,17 +375,23 @@ pub(crate) fn write_reply(
         .pointer("/choices/0")
         .ok_or_else(|| Error::new(ErrorKind::Decode, "the reply has no choices"))?;
     let message = choice.get("message").unwrap_or(&Value::Null);
-    if let Some(reasoning) = reasoning_text(message) {
+    let (reasoning, content) = pieces(message);
+    if !reasoning.is_empty() {
         out.part(AssistantContent::Reasoning(rig2_core::content::Reasoning {
-            text: reasoning.to_owned(),
+            text: reasoning,
             ..Default::default()
         }));
     }
-    let text = message
-        .get("content")
+    let refusal = message
+        .get("refusal")
         .and_then(Value::as_str)
-        .or_else(|| message.get("refusal").and_then(Value::as_str));
-    if let Some(text) = text.filter(|t| !t.is_empty()) {
+        .unwrap_or_default();
+    let text = if content.is_empty() {
+        refusal
+    } else {
+        content.as_str()
+    };
+    if !text.is_empty() {
         out.part(AssistantContent::Text(Text {
             text: text.to_owned(),
             citations: citations(message.get("annotations")),
@@ -531,22 +573,19 @@ impl StreamDecoder<SseEvent> for ChatDecoder {
             return Ok(None);
         };
         let delta = choice.get("delta").unwrap_or(&Value::Null);
-        if let Some(reasoning) = reasoning_text(delta) {
+        let (reasoning, text) = pieces(delta);
+        if !reasoning.is_empty() {
             let block = self.reasoning.get_or_insert_with(|| out.reasoning());
-            out.push(block, reasoning);
-            self.all_reasoning.push_str(reasoning);
+            out.push(block, &reasoning);
+            self.all_reasoning.push_str(&reasoning);
         }
-        if let Some(text) = delta
-            .get("content")
-            .and_then(Value::as_str)
-            .filter(|t| !t.is_empty())
-        {
+        if !text.is_empty() {
             if let Some(block) = self.reasoning.take() {
                 out.end_reasoning(block);
             }
             let block = self.text.get_or_insert_with(|| out.text());
-            out.push(block, text);
-            self.all_text.push_str(text);
+            out.push(block, &text);
+            self.all_text.push_str(&text);
         }
         for call in delta
             .get("tool_calls")

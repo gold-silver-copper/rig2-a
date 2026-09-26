@@ -1,0 +1,144 @@
+{
+  "interactions": [
+    {
+      "request": {
+        "method": "POST",
+        "uri": "https://api.mistral.ai/v1/chat/completions",
+        "headers": [
+          [
+            "content-type",
+            "application/json"
+          ]
+        ],
+        "body": {
+          "json": {
+            "max_tokens": 512,
+            "messages": [
+              {
+                "content": [
+                  {
+                    "text": "What single color fills this image? One word.",
+                    "type": "text"
+                  },
+                  {
+                    "image_url": {
+                      "url": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAIAAADTED8xAAAB+0lEQVR42u3TQQkAAAjAwPUvrX8reHAJBmsK3pIAA4ABwABgADAAGAAMAAYAA4ABwABgADAAGAAMAAYAA4ABwABgADAAGAAMAAYAA4ABwABgADAAGAAMAAYAA4ABwABgADAAGAAMAAYAA4ABwABgADAAGAAMAAYAA4ABwAAYAAwABgADgAHAAGAAMAAYAAwABgADgAHAAGAAMAAYAAwABgADgAHAAGAAMAAYAAwABgADgAHAAGAAMAAYAAwABgADgAHAAGAAMAAYAAwABgADgAHAAGAAMAAYAAwABgAJMAAYAAwABgADgAHAAGAAMAAYAAwABgADgAHAAGAAMAAYAAwABgADgAHAAGAAMAAYAAwABgADgAHAAGAAMAAYAAwABgADgAHAAGAAMAAYAAwABgADgAHAAGAAMAAYAAyAASTAAGAAMAAYAAwABgADgAHAAGAAMAAYAAwABgADgAHAAGAAMAAYAAwABgADgAHAAGAAMAAYAAwABgADgAHAAGAAMAAYAAwABgADgAHAAGAAMAAYAAwABgADgAHAAGAAMAAGAAOAAcAAYAAwABgADAAGAAOAAcAAYAAwABgADAAGAAOAAcAAYAAwABgADAAGAAOAAcAAYAAwABgADAAGAAOAAcAAYAAwABgADAAGAAOAAcAAYAAwABgADADHAllMDvLkz2XNAAAAAElFTkSuQmCC"
+                    },
+                    "type": "image_url"
+                  }
+                ],
+                "role": "user"
+              }
+            ],
+            "model": "ministral-8b-latest"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": [
+          [
+            "date",
+            "Sat, 26 Sep 2026 20:50:01 GMT"
+          ],
+          [
+            "content-type",
+            "application/json"
+          ],
+          [
+            "content-length",
+            "372"
+          ],
+          [
+            "mistral-correlation-id",
+            "01a0df7b-6668-7a79-b0bd-44482571a70b"
+          ],
+          [
+            "x-kong-request-id",
+            "01a0df7b-6668-7a79-b0bd-44482571a70b"
+          ],
+          [
+            "x-max-retry-attempts-reached",
+            "false"
+          ],
+          [
+            "x-ratelimit-limit-req-minute",
+            "188"
+          ],
+          [
+            "x-ratelimit-remaining-req-minute",
+            "184"
+          ],
+          [
+            "x-envoy-upstream-service-time",
+            "233"
+          ],
+          [
+            "server",
+            "cloudflare"
+          ],
+          [
+            "access-control-allow-origin",
+            "*"
+          ],
+          [
+            "x-kong-upstream-latency",
+            "233"
+          ],
+          [
+            "x-kong-proxy-latency",
+            "16"
+          ],
+          [
+            "cf-cache-status",
+            "DYNAMIC"
+          ],
+          [
+            "strict-transport-security",
+            "max-age=15552000; includeSubDomains; preload"
+          ],
+          [
+            "x-content-type-options",
+            "nosniff"
+          ],
+          [
+            "cf-ray",
+            "a41523767abe72cf-LAX"
+          ],
+          [
+            "alt-svc",
+            "h3=\":443\"; ma=86400"
+          ]
+        ],
+        "body": {
+          "json": {
+            "choices": [
+              {
+                "finish_reason": "stop",
+                "index": 0,
+                "message": {
+                  "content": "Red",
+                  "role": "assistant",
+                  "tool_calls": null
+                }
+              }
+            ],
+            "created": 1790455801,
+            "id": "1198e37325984eb983690e46fd1fb965",
+            "model": "ministral-8b-latest",
+            "object": "chat.completion",
+            "usage": {
+              "completion_tokens": 2,
+              "prompt_tokens": 123,
+              "prompt_tokens_details": {
+                "cached_tokens": 0
+              },
+              "service_tier": "standard",
+              "total_tokens": 125
+            }
+          }
+        }
+      }
+    }
+  ]
+}

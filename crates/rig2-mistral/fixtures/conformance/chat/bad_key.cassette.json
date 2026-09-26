@@ -1,0 +1,91 @@
+{
+  "interactions": [
+    {
+      "request": {
+        "method": "POST",
+        "uri": "https://api.mistral.ai/v1/chat/completions",
+        "headers": [
+          [
+            "content-type",
+            "application/json"
+          ]
+        ],
+        "body": {
+          "json": {
+            "max_tokens": 512,
+            "messages": [
+              {
+                "content": [
+                  {
+                    "text": "hi",
+                    "type": "text"
+                  }
+                ],
+                "role": "user"
+              }
+            ],
+            "model": "ministral-3b-latest"
+          }
+        }
+      },
+      "response": {
+        "status": 401,
+        "headers": [
+          [
+            "date",
+            "Sat, 26 Sep 2026 20:50:02 GMT"
+          ],
+          [
+            "content-type",
+            "application/json"
+          ],
+          [
+            "mistral-correlation-id",
+            "01a0df7b-6b30-78f5-aad9-a41cee48cf0c"
+          ],
+          [
+            "x-kong-request-id",
+            "01a0df7b-6b30-78f5-aad9-a41cee48cf0c"
+          ],
+          [
+            "access-control-allow-origin",
+            "*"
+          ],
+          [
+            "x-kong-response-latency",
+            "12"
+          ],
+          [
+            "cf-cache-status",
+            "DYNAMIC"
+          ],
+          [
+            "strict-transport-security",
+            "max-age=15552000; includeSubDomains; preload"
+          ],
+          [
+            "x-content-type-options",
+            "nosniff"
+          ],
+          [
+            "server",
+            "cloudflare"
+          ],
+          [
+            "cf-ray",
+            "a415237e281272cf-LAX"
+          ],
+          [
+            "alt-svc",
+            "h3=\":443\"; ma=86400"
+          ]
+        ],
+        "body": {
+          "json": {
+            "detail": "Invalid API Key"
+          }
+        }
+      }
+    }
+  ]
+}

@@ -177,3 +177,14 @@ fn a_unary_refusal_is_reported_as_one() {
     assert_eq!(response.finish_reason, FinishReason::Refusal);
     assert_eq!(response.text(), "I can't help with that.");
 }
+
+#[test]
+fn content_chunks_with_thinking_become_reasoning_and_text() {
+    let doc = json!({"choices":[{"message":{"content":[
+        {"type":"thinking","thinking":[{"type":"text","text":"Let me see."}]},
+        {"type":"text","text":"Yes."}
+    ]},"finish_reason":"stop"}]});
+    let response = respond(|out| write_reply("mistral", &doc, None, out)).unwrap();
+    assert_eq!(response.reasoning()[0].text, "Let me see.");
+    assert_eq!(response.text(), "Yes.");
+}

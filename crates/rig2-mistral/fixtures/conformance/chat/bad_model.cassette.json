@@ -1,0 +1,108 @@
+{
+  "interactions": [
+    {
+      "request": {
+        "method": "POST",
+        "uri": "https://api.mistral.ai/v1/chat/completions",
+        "headers": [
+          [
+            "content-type",
+            "application/json"
+          ]
+        ],
+        "body": {
+          "json": {
+            "max_tokens": 512,
+            "messages": [
+              {
+                "content": [
+                  {
+                    "text": "hi",
+                    "type": "text"
+                  }
+                ],
+                "role": "user"
+              }
+            ],
+            "model": "rig2-no-such-model"
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "headers": [
+          [
+            "date",
+            "Sat, 26 Sep 2026 20:50:03 GMT"
+          ],
+          [
+            "content-type",
+            "application/json"
+          ],
+          [
+            "content-length",
+            "136"
+          ],
+          [
+            "mistral-correlation-id",
+            "01a0df7b-6bf7-7e29-b962-1f45b0a7c5c1"
+          ],
+          [
+            "x-kong-request-id",
+            "01a0df7b-6bf7-7e29-b962-1f45b0a7c5c1"
+          ],
+          [
+            "x-envoy-upstream-service-time",
+            "49"
+          ],
+          [
+            "server",
+            "cloudflare"
+          ],
+          [
+            "access-control-allow-origin",
+            "*"
+          ],
+          [
+            "x-kong-upstream-latency",
+            "50"
+          ],
+          [
+            "x-kong-proxy-latency",
+            "13"
+          ],
+          [
+            "cf-cache-status",
+            "DYNAMIC"
+          ],
+          [
+            "strict-transport-security",
+            "max-age=15552000; includeSubDomains; preload"
+          ],
+          [
+            "x-content-type-options",
+            "nosniff"
+          ],
+          [
+            "cf-ray",
+            "a415237f5cf472cf-LAX"
+          ],
+          [
+            "alt-svc",
+            "h3=\":443\"; ma=86400"
+          ]
+        ],
+        "body": {
+          "json": {
+            "code": "1500",
+            "message": "Invalid model: rig2-no-such-model",
+            "object": "error",
+            "param": null,
+            "raw_status_code": 400,
+            "type": "invalid_model"
+          }
+        }
+      }
+    }
+  ]
+}

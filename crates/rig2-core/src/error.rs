@@ -125,7 +125,17 @@ impl Error {
     pub fn from_response(status: u16, body: impl Into<String>, headers: &http::HeaderMap) -> Self {
         let body = body.into();
         let message = extract_message(&body).unwrap_or_else(|| format!("HTTP {status}"));
-        let kind = kind_from_body(&body).unwrap_or_else(|| ErrorKind::from_status(status));
+        // A 429 whose limit is zero is not throttling: the account has no
+        // quota for this model, and waiting will not help.
+        let no_quota = status == 429
+            && headers.iter().any(|(name, value)| {
+                name.as_str().starts_with("x-ratelimit-limit") && value.as_bytes() == b"0"
+            });
+        let kind = if no_quota {
+            ErrorKind::PermissionDenied
+        } else {
+            kind_from_body(&body).unwrap_or_else(|| ErrorKind::from_status(status))
+        };
         let mut error = Self::new(kind, message);
         error.0.status = Some(status);
         error.0.body = (!body.is_empty()).then_some(body);

@@ -1,0 +1,138 @@
+{
+  "interactions": [
+    {
+      "request": {
+        "method": "POST",
+        "uri": "https://api.mistral.ai/v1/chat/completions",
+        "headers": [
+          [
+            "content-type",
+            "application/json"
+          ]
+        ],
+        "body": {
+          "json": {
+            "max_tokens": 512,
+            "messages": [
+              {
+                "content": [
+                  {
+                    "text": "Say hi.",
+                    "type": "text"
+                  }
+                ],
+                "role": "user"
+              }
+            ],
+            "model": "ministral-3b-latest"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": [
+          [
+            "date",
+            "Sat, 26 Sep 2026 20:50:02 GMT"
+          ],
+          [
+            "content-type",
+            "application/json"
+          ],
+          [
+            "content-length",
+            "563"
+          ],
+          [
+            "mistral-correlation-id",
+            "01a0df7b-6944-7198-9f60-e7a864e73039"
+          ],
+          [
+            "x-kong-request-id",
+            "01a0df7b-6944-7198-9f60-e7a864e73039"
+          ],
+          [
+            "x-max-retry-attempts-reached",
+            "false"
+          ],
+          [
+            "x-ratelimit-limit-req-minute",
+            "750"
+          ],
+          [
+            "x-ratelimit-remaining-req-minute",
+            "749"
+          ],
+          [
+            "x-envoy-upstream-service-time",
+            "302"
+          ],
+          [
+            "server",
+            "cloudflare"
+          ],
+          [
+            "access-control-allow-origin",
+            "*"
+          ],
+          [
+            "x-kong-upstream-latency",
+            "303"
+          ],
+          [
+            "x-kong-proxy-latency",
+            "13"
+          ],
+          [
+            "cf-cache-status",
+            "DYNAMIC"
+          ],
+          [
+            "strict-transport-security",
+            "max-age=15552000; includeSubDomains; preload"
+          ],
+          [
+            "x-content-type-options",
+            "nosniff"
+          ],
+          [
+            "cf-ray",
+            "a415237b1c8272cf-LAX"
+          ],
+          [
+            "alt-svc",
+            "h3=\":443\"; ma=86400"
+          ]
+        ],
+        "body": {
+          "json": {
+            "choices": [
+              {
+                "finish_reason": "stop",
+                "index": 0,
+                "message": {
+                  "content": "Hi there! 😊 How’s your day going so far? Let me know if you’d like to chat about anything—whether it’s fun topics, random facts, or even just a friendly catch-up! What’s on your mind?",
+                  "role": "assistant",
+                  "tool_calls": null
+                }
+              }
+            ],
+            "created": 1790455802,
+            "id": "4112ef78bf6c4e9e83873134004aede5",
+            "model": "ministral-3b-latest",
+            "object": "chat.completion",
+            "usage": {
+              "completion_tokens": 50,
+              "prompt_tokens": 6,
+              "prompt_tokens_details": {
+                "cached_tokens": 0
+              },
+              "service_tier": "standard",
+              "total_tokens": 56
+            }
+          }
+        }
+      }
+    }
+  ]
+}

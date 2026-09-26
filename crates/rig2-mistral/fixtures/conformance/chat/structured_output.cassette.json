@@ -1,0 +1,180 @@
+{
+  "interactions": [
+    {
+      "request": {
+        "method": "POST",
+        "uri": "https://api.mistral.ai/v1/chat/completions",
+        "headers": [
+          [
+            "content-type",
+            "application/json"
+          ]
+        ],
+        "body": {
+          "json": {
+            "max_tokens": 512,
+            "messages": [
+              {
+                "content": [
+                  {
+                    "text": "What is the capital of France? Answer with the city and its country.",
+                    "type": "text"
+                  }
+                ],
+                "role": "user"
+              }
+            ],
+            "model": "ministral-8b-latest",
+            "tool_choice": {
+              "function": {
+                "name": "submit_Capital"
+              },
+              "type": "function"
+            },
+            "tools": [
+              {
+                "function": {
+                  "description": "Submit the answer in the required structure.",
+                  "name": "submit_Capital",
+                  "parameters": {
+                    "$schema": "https://json-schema.org/draft/2020-12/schema",
+                    "properties": {
+                      "city": {
+                        "type": "string"
+                      },
+                      "country": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "city",
+                      "country"
+                    ],
+                    "title": "Capital",
+                    "type": "object"
+                  }
+                },
+                "type": "function"
+              }
+            ]
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": [
+          [
+            "date",
+            "Sat, 26 Sep 2026 20:50:01 GMT"
+          ],
+          [
+            "content-type",
+            "application/json"
+          ],
+          [
+            "content-length",
+            "518"
+          ],
+          [
+            "mistral-correlation-id",
+            "01a0df7b-64bf-71a9-bace-0cebfd5146e0"
+          ],
+          [
+            "x-kong-request-id",
+            "01a0df7b-64bf-71a9-bace-0cebfd5146e0"
+          ],
+          [
+            "x-max-retry-attempts-reached",
+            "false"
+          ],
+          [
+            "x-ratelimit-limit-req-minute",
+            "188"
+          ],
+          [
+            "x-ratelimit-remaining-req-minute",
+            "185"
+          ],
+          [
+            "x-envoy-upstream-service-time",
+            "234"
+          ],
+          [
+            "server",
+            "cloudflare"
+          ],
+          [
+            "access-control-allow-origin",
+            "*"
+          ],
+          [
+            "x-kong-upstream-latency",
+            "235"
+          ],
+          [
+            "x-kong-proxy-latency",
+            "8"
+          ],
+          [
+            "cf-cache-status",
+            "DYNAMIC"
+          ],
+          [
+            "strict-transport-security",
+            "max-age=15552000; includeSubDomains; preload"
+          ],
+          [
+            "x-content-type-options",
+            "nosniff"
+          ],
+          [
+            "cf-ray",
+            "a4152373e8fc72cf-LAX"
+          ],
+          [
+            "alt-svc",
+            "h3=\":443\"; ma=86400"
+          ]
+        ],
+        "body": {
+          "json": {
+            "choices": [
+              {
+                "finish_reason": "tool_calls",
+                "index": 0,
+                "message": {
+                  "content": "",
+                  "role": "assistant",
+                  "tool_calls": [
+                    {
+                      "function": {
+                        "arguments": "{\"city\": \"Paris\", \"country\": \"France\"}",
+                        "name": "submit_Capital"
+                      },
+                      "id": "EVpuATiKh",
+                      "index": 0,
+                      "type": "function"
+                    }
+                  ]
+                }
+              }
+            ],
+            "created": 1790455801,
+            "id": "d5844a0327d5468d9574b9c6316ab1ba",
+            "model": "ministral-8b-latest",
+            "object": "chat.completion",
+            "usage": {
+              "completion_tokens": 19,
+              "prompt_tokens": 127,
+              "prompt_tokens_details": {
+                "cached_tokens": 0
+              },
+              "service_tier": "standard",
+              "total_tokens": 146
+            }
+          }
+        }
+      }
+    }
+  ]
+}

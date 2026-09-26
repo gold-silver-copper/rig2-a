@@ -1294,6 +1294,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "rig2-mistral"
+version = "0.1.0"
+dependencies = [
+ "rig2-core",
+ "rig2-openai",
+ "rig2-testkit",
+ "tokio",
+]
+
+[[package]]
 name = "rig2-openai"
 version = "0.1.0"
 dependencies = [
@@ -1327,6 +1337,7 @@ dependencies = [
  "base64",
  "bytes",
  "futures",
+ "futures-timer",
  "http",
  "regex",
  "rig2-core",
