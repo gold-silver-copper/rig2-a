@@ -23,6 +23,7 @@ serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 thiserror = "2.0"
 tracing = "0.1"
+web-time = "1.1"
 
 proptest = "1.7"
 tokio = { version = "1.47", features = ["macros", "rt-multi-thread", "time"] }
@@ -56,3 +57,4 @@ cast_sign_loss = "allow"
 cast_possible_wrap = "allow"
 items_after_statements = "allow"
 struct_field_names = "allow"
+doc_markdown = "allow"
